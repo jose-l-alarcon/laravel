@@ -15,14 +15,22 @@
 <div class="container-fluid">
 <div class="row-fluid">
 
+<a href="{{route ('nuevoUsuario')}}" class="btn btn-success">Nuevo paciente</a>           
+
+ <!--   <div class="span12 btn-icon-pg">
+                  <ul>
+       <li><i class="icon-user"></i> Agregar paciente</li>
+
+     </ul>
+   </div> -->
 
        <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Lista de Pacientes</h5>
-             <span class="label label-info">Agregar paciente</span> 
+           <!--   <span class="label label-info">Agregar paciente</span>  -->
           </div>
-          <div class="widget-content nopadding">
-            <table class="table table-bordered data-table" style="width:100%">
+     
+            <table id="paciente"  class="table table-bordered table-striped" >
         
 
       
@@ -33,8 +41,8 @@
                   <th>Paciente</th>
                   <th>Edad</th>
                   <th>Género</th>
-                  <th>Fecha de Ingreso</th>
-                  <th>Opciones</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Opción</th>
 
                 </tr>
               </thead>
@@ -42,11 +50,12 @@
              
               <tbody>
                 <tr class="gradeX">
-                  <td>{{ $paciente->apellido }} {{ $paciente->nombre }}</td>
+                  <td><i class="icon-user"></i> {{ $paciente->apellido }} {{ $paciente->nombre }}</td>
                   <td>{{ $paciente->edad }} </td>
                   <td>{{ $paciente->genero }}</td>
                   <td>{{ date("d/m/Y", strtotime($paciente->fecha_entrada)) }}</td>
-                   <td class="center">5.5</td>
+                  <td class="taskOptions"><a href="{{route('detalle',['idpaciente' => $paciente->idpaciente])}}" class="tip-top" data-original-title="Ver más datos"><i class="icon-folder-open"></i></a> <a href="{{route('editar',['idpaciente' => $paciente->idpaciente])}}" class="tip-top" data-original-title="Editar datos"><i class="icon-edit"></i></a>
+                  <a href="#" class="tip-top" data-original-title="Agregar diagnostico"><i class="icon-plus"></i></a></td>
                 </tr>
                   @endforeach
                  @else
@@ -55,7 +64,12 @@
             
               </tbody>
             </table>
-          </div>
+
+          <!--  -->
+
+
+
+
         </div>
 
 

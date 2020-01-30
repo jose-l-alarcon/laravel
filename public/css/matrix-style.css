@@ -1230,8 +1230,8 @@ form {
 	padding:5px;
 	list-style:none;
 	display:inline-block;
-	border:0px solid #dadada;
-	min-width:187px;
+	border:1px solid #0000FF;
+	min-width:120px;
 	cursor:pointer
 }
 .btn-icon-pg ul li:hover i {
