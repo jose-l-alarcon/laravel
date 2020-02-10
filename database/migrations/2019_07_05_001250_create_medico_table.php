@@ -13,13 +13,13 @@ class CreateMedicoTable extends Migration
      */
     public function up()
     {
-        Schema::create('medico', function (Blueprint $table) {
+        Schema::create('medicos', function (Blueprint $table) {
             $table->Increments('idmedico'); //entero sin signo autoincremental 
               $table->unsignedInteger('idrol_usuario');
          $table->foreign('idrol_usuario')->references('idrol_usuario')->on('rol_usuario');
             $table->string('apellido', 100);
             $table->string('nombre', 100);
-            $table->string('nombreUsuario', 50)->unique();
+            $table->string('email', 50)->unique();
             $table->string('password', 200);
             $table->integer('estado');
             $table->timestamps();

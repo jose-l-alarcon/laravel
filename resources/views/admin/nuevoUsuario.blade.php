@@ -1,23 +1,15 @@
 @include('layouts/header')
 @include('layouts/sidebar')
+@include('layouts/nav')
 
-<!--main-container-part-->
-<div id="content">
-<!--breadcrumbs-->
-  <div id="content-header">
-     <div id="breadcrumb"> <a title="Alta paciente" class="tip-bottom"><i class="icon-home"></i>Agregar nuevo paciente</a> </div>
-  </div>
+      <div class="content">
+                
 
-<!-- ------------------------------------------------- -->
-<!-- FORMULARIO PARA AGREGAR NUEVOS ALUMNOS -->
-<!-- -------------------------------------------------- -->
-      
-<div class="container-fluid">
-<div class="row-fluid">
-    <div class="span8">
+        <div class="container-fluid">
 
-
-              <!-- devuelve verdadero si existe algun error  -->
+   <div class="row">
+    <div class="col-md-9">
+   <!-- devuelve verdadero si existe algun error  -->
         @if ($errors->any())
         <div class="alert alert-danger">
           <p> Existen errores al enviar el formulario </p>
@@ -28,177 +20,160 @@
         </ul> -->
         </div>
         @endif
-  
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-hand-right"></i> </span>
-          <h5 style="color:blue;">Ingrese los siguientes datos del paciente:</h5>
-        </div>
-
-        <div class="widget-content nopadding">
-          <form action="{{url('agregarUsuario')}}" method="post" class="form-horizontal">
-            
-            {!!csrf_field()!!}   
-            <!-- token agregado para evitar ataques post de otros sitios , ejemplo que por el formulario se quiera ingresar un nuevo usuario -->
-        
-         <div class="control-group">
-              <label class="control-label">DNI:</label>
-              <div class="controls">
-                <input type="number" name="dni" class="span11" value="{{old('dni')}}"/>
-                @if ($errors->has('dni'))
-                     <!-- preguntar si la vsriable contiene algiun error -->
-                   <p style="color:#FF0000";>{{$errors->first('dni')  }}</p>
-                   <!-- $errors->first imprime el primer error encontrado -->
-                @endif
-
-                <!-- value="{{old('dni')}}" nos permite mantener el valor del campo al enviar el formulario -->
-
-                <!-- preguntar si existe algun error en la variable error->dni, si es verdadero se imprime el primer error   -->
-              </div>
-         </div>
-
-
-        <div class="control-group">
-              <label class="control-label">Apellido:</label>
-              <div class="controls">
-                <input type="text" name="apellido" class="span11" value="{{old('apellido')}}" />
-
-
-                 @if ($errors->has('apellido'))
-                   <p style="color:#FF0000";>{{$errors->first('apellido')  }}</p>
-                @endif
-              </div>
-        </div>
-
-        <div class="control-group">
-              <label class="control-label">Nombre:</label>
-              <div class="controls">
-                <input type="text" name="nombre" class="span11"  value="{{old('nombre')}}" />
-                 @if ($errors->has('nombre'))
-                   <p style="color:#FF0000";>{{$errors->first('nombre')  }}</p>
-                @endif
-              </div>
-        </div>
-
-         <!-- <div class="control-group">
-              <label class="control-label">Género:</label>
-              <div class="controls">
-                <input type="text" name="genero" class="span11" value="{{old('genero')}}" placeholder="Género" />
-                 @if ($errors->has('genero'))
-                   <p style="color:#FF0000";>{{$errors->first('genero')  }}</p>
-                @endif
-              </div>
-       </div> -->
-          
-          <div class="control-group">
-              <label class="control-label">Género</label>
-              <div class="controls">
-                <label>
-                  <input type="radio" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }}>
-                  Masculino</label>
-                <label>
-                  <input type="radio" name="genero" value="Femenino"/>
-                  Femenino</label>
-
-                   @if ($errors->has('genero'))
-                   <p style="color:#FF0000";>{{$errors->first('genero')  }}</p>
-                @endif
-              </div>
-            </div>
-
-      <!--  <div class="control-group">
-              <label class="control-label">Género</label>
-              <div class="controls">
-                <select name="genero" >
-                  <option ></option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Femenino">Femenino</option>
-                </select>
-                 @if ($errors->has('genero'))
-                   <p style="color:#FF0000";>{{$errors->first('genero')  }}</p>
-                @endif
-              </div>
-            </div> -->
-
-            
-
-       <div class="control-group">
-              <label class="control-label">Fecha de nacimiento:</label>
-              <div class="controls">
-                <input type="date" name="fecha_nacimiento" class="span11" value="{{old('fecha_nacimiento')}}"/>
-                 @if ($errors->has('fecha_nacimiento'))
-                   <p style="color:#FF0000";>{{$errors->first('fecha_nacimiento')  }}</p>
-                @endif
-              </div>
-        </div>
-
-         <div class="control-group">
-              <label class="control-label">Edad:</label>
-              <div class="controls">
-                <input type="number" name="edad" class="span11" value="{{old('edad')}}" />
-                 @if ($errors->has('edad'))
-                   <p style="color:#FF0000";>{{$errors->first('edad')  }}</p>
-                @endif
-              </div>
-         </div>
-
-             <div class="control-group">
-              <label class="control-label">Obra Social:</label>
-              <div class="controls">
-                <input type="text" name="obra_social" class="span11" value="{{old('obra_social')}}"  />
-                  @if ($errors->has('obra_social'))
-                   <p style="color:#FF0000";>{{$errors->first('obra_social')  }}</p>
-                @endif
-              </div>
-            </div>
-
-            <div class="control-group">
-              <label class="control-label">Localidad:</label>
-              <div class="controls">
-                <input type="text" name="localidad" class="span11" value="{{old('localidad')}}"  />
-                  @if ($errors->has('localidad'))
-                   <p style="color:#FF0000";>{{$errors->first('localidad')  }}</p>
-                @endif
-              </div>
-            </div>
-            
-            <div class="control-group">
-              <label class="control-label">Provincia:</label>
-              <div class="controls">
-                <input type="text" name="provincia" class="span11" value="{{old('provincia')}}" />
-                  @if ($errors->has('provincia'))
-                   <p style="color:#FF0000";>{{$errors->first('provincia')  }}</p>
-                @endif
-              </div>
-            </div>
-
-              <div class="control-group">
-              <label class="control-label">Fecha de entrada:</label>
-              <div class="controls">
-                <input type="date" name="fecha_entrada" class="span11" value="{{old('fecha_entrada')}}" />
-                  @if ($errors->has('fecha_entrada'))
-                   <p style="color:#FF0000";>{{$errors->first('fecha_entrada')  }}</p>
-                @endif
-              </div>
-            </div>
-
-           
-            <div class="form-actions">
-              <button type="submit" class="btn btn-success">Guardar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       </div>
     </div>
 
-     <div class="new-update clearfix"> <i class="icon-arrow-left"></i> <span class="update-notice"> <a title="Volver al listado" href="{{route ('admin')}}"><strong>Regresar al listado</strong></a> </span> </div> 
-  </div>
-</div>
 
-  </div>
-</div>
+      <div class="row">
+            <div class="col-md-9">
+              <div class="card">
+                <div class="card-header card-header-success">
+                  <h4 class="card-title">Nuevo paciente</h4>
+                  <p class="card-category">Agregar los siguientes datos:</p>
+                </div>
+                <div class="card-body">
+                  <form action="{{url('agregarUsuario')}}" method="post">
+                  {!!csrf_field()!!}   
+            <!-- token agregado para evitar ataques post de otros sitios , ejemplo que por el formulario se quiera ingresar un nuevo usuario -->
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">DNI:</label>
+                          <input type="number" name="dni" class="form-control" value="{{old('dni')}}" />
+                            @if ($errors->has('dni'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('dni')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
 
-<!--end-main-container-part-->
+                        <!-- value="{{old('dni')}}" nos permite mantener el valor del campo al enviar el formulario -->
 
-@include('layouts/footer')
+                        <!-- preguntar si existe algun error en la variable error->dni, si es verdadero se imprime el primer error   -->
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Apellido:</label>
+                          <input  type="text" name="apellido" class="form-control" value="{{old('apellido')}}" />
+                           @if ($errors->has('apellido'))
+                               <p style="color:#FF0000";>{{$errors->first('apellido')  }}</p>
+                            @endif
+                        </div>
+                      </div>
+                       <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Nombre:</label>
+                          <input type="text" name="nombre" class="form-control"  value="{{old('nombre')}}" />
+                           @if ($errors->has('nombre'))
+                             <p style="color:#FF0000";>{{$errors->first('nombre')  }}</p>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Género:</label>
+
+                          <br>
+                          <label>
+                            <input type="radio" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }}>
+                            Masculino</label>
+                          <label>
+                            <label>
+                            <input type="radio" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
+                            Femenino</label>
+            
+                        </div>
+                         @if ($errors->has('genero'))
+                               <p style="color:#FF0000";>{{$errors->first('genero')  }}</p>
+                            @endif
+                      </div>
+
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Fecha nacimiento:</label>
+                          <input type="date" name="fecha_nacimiento" class="form-control"  value="{{old('fecha_nacimiento')}}"/>
+                          @if ($errors->has('fecha_nacimiento'))
+                             <p style="color:#FF0000";>{{$errors->first('fecha_nacimiento')  }}</p>
+                          @endif
+                        </div>
+                      </div>
+
+                       <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Edad:</label>
+                          <input type="number" name="edad" class="form-control" value="{{old('edad')}}" />
+                            @if ($errors->has('edad'))
+                             <p style="color:#FF0000";>{{$errors->first('edad')  }}</p>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Obra social:</label>
+                          <input type="text" name="obra_social" class="form-control" value="{{old('obra_social')}}"  />
+                           @if ($errors->has('obra_social'))
+                           <p style="color:#FF0000";>{{$errors->first('obra_social')  }}</p>
+                        @endif
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Localidad:</label>
+                          <input type="text" name="localidad" class="form-control" value="{{old('localidad')}}"  />
+                            @if ($errors->has('localidad'))
+                             <p style="color:#FF0000";>{{$errors->first('localidad')  }}</p>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Provincia:</label>
+                          <input type="text" name="provincia" class="form-control" value="{{old('provincia')}}" />
+                           @if ($errors->has('provincia'))
+                             <p style="color:#FF0000";>{{$errors->first('provincia')  }}</p>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                      <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Fecha de ingreso:</label>
+                          <input type="date" name="fecha_entrada" class="form-control" value="{{old('fecha_entrada')}}" />
+                           @if ($errors->has('fecha_entrada'))
+                             <p style="color:#FF0000";>{{$errors->first('fecha_entrada')  }}</p>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+        
+
+
+        </div>
+      
+
+         <div class="stats">
+                    <i class="material-icons text-success">arrow_back</i>
+                    <a  href="{{route ('admin')}}"> Regresar al listado</a>
+         </div>
+     
+
+      </div>
+
+      @include('layouts/footer')
+
+    

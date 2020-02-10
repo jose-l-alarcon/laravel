@@ -1,65 +1,60 @@
 @include('layouts/header')
 @include('layouts/sidebar')
+@include('layouts/nav')
 
-<!--main-container-part-->
-<div id="content">
-<!--breadcrumbs-->
-  <div id="content-header">
-  <div id="breadcrumb"> <a title="Detalle paciente" class="tip-bottom"><i class="icon-home"></i>Detalles del paciente</a> </div>
-  </div>
+      <div class="content">
+                
 
-<!-- ------------------------------------------------------------ -->
-<!-- DETALLES DE ALUMNOS: VISUALIZAR LOS DATOS DEL ALUMNO --> 
-<!-- ----------------------------------------------------------------- -->
+        <div class="container-fluid">
+        
 
-      <div class="container-fluid">
+         <div class="col-md-6">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                  <a>
+                    <img class="img" src=" {{ asset ('img/faces/images.png')}}" />
 
-
-    <div class="row-fluid">
-      <div class="span6">
-       
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5>Paciente : {{$paciente->apellido}} {{$paciente->nombre}}</h5>
-          </div>
-          <div class="widget-content">
-            <div class="todo">
-              <ul>
-                <li class="clearfix">
-                  <div class="txt"> DNI: <span class="date badge badge-warning">{{$paciente->dni}}</span></div>
-                  <div class="txt"> Género: <span class="date badge badge-warning">{{$paciente->genero}}</span></div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt">Fecha Nacimiento<span class="by label">{{ date("d/m/Y", strtotime($paciente->fecha_nacimiento))}}</span></div>
-                  <div class="txt"> Edad: <span class="by label">{{$paciente->edad}}</span></div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Obra Social <span class="date badge badge-info">{{$paciente->obra_social}}</span> </div>
-                  
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Localidad <span class="date badge badge-important">{{$paciente->localidad}}</span> </div>
-                  <div class="txt"> Provincia <span class="date badge badge-important">{{$paciente->provincia}}</span> </div>
-                 
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-    </div>
-  </div>
-
-  <div class="new-update clearfix"> <i class="icon-arrow-left"></i> <span class="update-notice"> <a title="Volver al listado" href="{{route ('admin')}}"><strong>Regresar al listado</strong></a> </span> </div>
-</div>
-
-
-
+                  </a>
+                </div>
+                <div class="card-body"> 
+                  <h6 class="card-category text-gray">Datos del paciente :</h6>
+                  <h4 class="card-title">{{$paciente->apellido}} {{$paciente->nombre}}</h4>
+                  <p class="card-description">
+                     
+                     
+                          <div class="txt"> 
+                            DNI: <span class="date badge badge-info">{{$paciente->dni}}</span>
+                            Género: <span class="date badge badge-info">{{$paciente->genero}}</span>
+                            Fecha Nacimiento<span class="date badge badge-info"> {{ date("d/m/Y", strtotime($paciente->fecha_nacimiento))}}</span>
+                          </div>
+                     
+                          <div class="txt"> 
+                          Edad: <span class="date badge badge-info"> {{$paciente->edad}} años</span>
+                          Obra Social <span class="date badge badge-info">{{$paciente->obra_social}}</span>
+                         </div>
+                          
+                     
+                    
+                          <div class="txt"> Localidad <span class="date badge badge-info">{{$paciente->localidad}}</span> 
+                          Provincia <span class="date badge badge-info">{{$paciente->provincia}}</span></div>
+                         
+                          <br/>
+                          <div class="stats">
+                          <i class="material-icons text-success">arrow_back</i>
+                          <a  href="{{route ('admin')}}"> Regresar al listado</a>
+                         </div>
       
+             
 
-  </div>
-</div>
+                  </p>
+                
+                </div>
+              </div>
+            </div>
+     
 
-<!--end-main-container-part-->
+      </div>
 
-@include('layouts/footer')
+      @include('layouts/footer')
+
+    

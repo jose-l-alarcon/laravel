@@ -1,24 +1,38 @@
 
-<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
-  <ul>
-    
-  <!--   <li><a href="{{ url('/nuevaInscripcion') }}"><i class="icon icon-fullscreen"></i> <span>Alta inscripción</span></a></li> -->
-    <li><a href="{{ url('/Admin') }}"><i class="icon icon-user" title="Pacientes"></i> <span>Pacientes</span></a></li>
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-    <li class="submenu"> <a href="#"><i class="icon icon-folder-open" title="Materias"></i> <span>Nuevo diagnóstico</span></a>
-      <ul>
-        <!-- <li><a href="form-common.html">Matemática</a></li>
-        <li><a href="form-validation.html">Ingles</a></li> -->
-      </ul>
-    </li>
-
-     <li class="submenu"> <a href="#"><i class="icon icon-bar-chart" title="Reportes"> </i> <span>Reportes</span> <span class="label label-important">2</span></a>
-      <ul>
-      <!--  <li><a href="form-common.html">Alumnos</a></li>
-        <li><a href="form-validation.html">Materias</a></li> -->
-      </ul>
-    </li>
-
-  </ul>
-</div>
-<!--sidebar-menu-->
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a  href="{{ url('/Admin') }}" class="simple-text logo-normal">
+        dashboard
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url('/Admin') }}">
+              <i class="material-icons">person</i>
+              <p>Pacientes</p>
+            </a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="./tables.html">
+              <i class="material-icons">content_paste</i>
+              <p>Diagnósticos</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./typography.html">
+              <i class="material-icons">library_books</i>
+              <p>Informes</p>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>

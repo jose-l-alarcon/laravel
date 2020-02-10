@@ -16,7 +16,7 @@ class CreateDiagnosticoTable extends Migration
         Schema::create('diagnostico', function (Blueprint $table) {
             $table->Increments('iddiagnostico');
             $table->unsignedInteger('idmedico');
-            $table->foreign('idmedico')->references('idmedico')->on('medico');
+            $table->foreign('idmedico')->references('idmedico')->on('medicos');
             // $table->foreign('idmateria');
             $table->unsignedInteger('idpaciente');
             $table->foreign('idpaciente')->references('idpaciente')->on('pacientes');

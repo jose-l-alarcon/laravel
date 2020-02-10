@@ -44,11 +44,19 @@ Route::put('updatePaciente/{paciente}', 'Administrador@updatePaciente');
 // otra forma de mandar parametros , utilizado para actualizar 
 // Route::put peticion para actualizar datos del paciente 
 
+// Vista para login de usuario
+Route::get('/loginUsuario', 'Login@login_usuario'); 
+// vista del login
 
 
+Route::post('/iniciar', 'Auth\LoginController@iniciarSesion');
+// metodo para ingresar al sistema
 
 
+// Auth::routes();
 
+// Route::get('/home', 'HomeController@index')->name('home');
 
+Auth::routes();
 
-
+Route::get('/home', 'HomeController@index')->name('home');

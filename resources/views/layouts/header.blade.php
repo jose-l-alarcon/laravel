@@ -1,44 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Admin</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}" />
-<link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.min.css')}}" />
-<link rel="stylesheet" href="{{ asset('css/fullcalendar.css')}}" />
-<link rel="stylesheet" href="{{ asset('css/matrix-style.css') }}" />
-<link rel="stylesheet" href="{{ asset('css/matrix-media.css') }}" />
-<link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" />
-<link rel="stylesheet" href="{{asset ('css/jquery.gritter.css')}}" />
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Sistema de historias clinicas
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link  href="{{ asset('css/material-dashboard-rtl.css')}}" rel="stylesheet" />
 
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-
-
+ <!--  href="{{ asset('css/material-dashboard-rtl.css')}}" -->
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{{ asset('css/material-dashboard.css')}}" rel="stylesheet" />
+  <link href="{{ asset('css/material-dashboard.min.css')}}" rel="stylesheet" />
+  <link href="{{ asset('css/demo/demo.css')}}" rel="stylesheet" />
 
 </head>
-<body>
-
-<!--Header-part-->
-<div id="header">
-  <h1><a href="dashboard.html">Matrix Admin</a></h1>
-</div>
-<!--close-Header-part--> 
-
-
-<!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
-  <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Bienvenido usuario</span><b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i> Mi perfil</a></li>
-        <li class="divider"></li>
-        <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Cerrar sesión </a></li>
-      </ul>
-    </li>
-
-  </ul>
-</div>
-<!--close-top-serch-->
