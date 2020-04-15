@@ -4,11 +4,10 @@
 
       <div class="content">
                 
-
-        <div class="container-fluid">
+<div class="container-fluid">
 
    <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
    <!-- devuelve verdadero si existe algun error  -->
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -25,7 +24,7 @@
 
 
       <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-success">
                   <h4 class="card-title">Nuevo paciente</h4>
@@ -94,7 +93,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Fecha nacimiento:</label>
-                          <input type="date" name="fecha_nacimiento" class="form-control"  value="{{old('fecha_nacimiento')}}"/>
+                          <input type="date" name="fecha_nacimiento" class="form-control"  value="{{old('fecha_nacimiento')}}" onkeydown="return false"/>
                           @if ($errors->has('fecha_nacimiento'))
                              <p style="color:#FF0000";>{{$errors->first('fecha_nacimiento')  }}</p>
                           @endif
@@ -142,17 +141,6 @@
                         </div>
                       </div>
                     </div>
-                      <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Fecha de ingreso:</label>
-                          <input type="date" name="fecha_entrada" class="form-control" value="{{old('fecha_entrada')}}" />
-                           @if ($errors->has('fecha_entrada'))
-                             <p style="color:#FF0000";>{{$errors->first('fecha_entrada')  }}</p>
-                          @endif
-                        </div>
-                      </div>
-                    </div>
                 
                     <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                     <div class="clearfix"></div>
@@ -160,7 +148,24 @@
                 </div>
               </div>
             </div>
-        
+
+         <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                  <a>
+                    <img class="img" src=" {{ asset ('img/paci.png')}}" />
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-category text-gray"> </h6>
+                  <h4 class="card-title">Sistema de historias clínicas</h4>
+                  <p class="card-description">
+                    {{$pacientes->count()}} paciente/s registrados
+                  </p>
+                  <!-- <a href="#pablo" class="btn btn-primary btn-round">Follow</a> -->
+                </div>
+              </div>
+            </div>
 
 
         </div>
@@ -168,7 +173,7 @@
 
          <div class="stats">
                     <i class="material-icons text-success">arrow_back</i>
-                    <a  href="{{route ('admin')}}"> Regresar al listado</a>
+                    <a  href="{{route ('Admin')}}"> Regresar al listado</a>
          </div>
      
 

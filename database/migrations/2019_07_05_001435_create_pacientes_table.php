@@ -27,7 +27,7 @@ class CreatePacientesTable extends Migration
             $table->string('obra_social', 100);
             $table->string('localidad', 100);
             $table->string('provincia', 100);
-            $table->date('fecha_entrada');   
+            // $table->date('fecha_entrada');   
             $table->timestamps();
         });
     }

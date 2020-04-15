@@ -65,10 +65,10 @@ return [
     |
     */
 
-    'providers' => [
+     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Medicos::class,
+            'model' => App\User::class,
         ],
 
         // 'users' => [

@@ -7,8 +7,8 @@
 
         <div class="container-fluid">
         
-
-         <div class="col-md-6">
+        <div class="row">
+         <div class="col-md-6 ml-auto mr-auto">
               <div class="card card-profile">
                 <div class="card-avatar">
                   <a>
@@ -41,7 +41,7 @@
                           <br/>
                           <div class="stats">
                           <i class="material-icons text-success">arrow_back</i>
-                          <a  href="{{route ('admin')}}"> Regresar al listado</a>
+                          <a  href="{{route ('Admin')}}"> Regresar al listado</a>
                          </div>
       
              
@@ -51,7 +51,7 @@
                 </div>
               </div>
             </div>
-     
+          </div>
 
       </div>
 

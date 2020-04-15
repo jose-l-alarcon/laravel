@@ -15,9 +15,5 @@ class Pacientes extends Model
         'dni','apellido','nombre', 'genero' , 'fecha_nacimiento' , 'edad' , 'obra_social', 'localidad', 'provincia', 'fecha_entrada'
     ]; 
 
-     // protected $guarded = ['idalumno'];
-    // protected $fillable = [
-    //     'apellido','nombre','estado',
-    // ];  
-
+   
 }

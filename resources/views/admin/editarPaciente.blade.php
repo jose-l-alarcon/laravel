@@ -120,14 +120,14 @@
                         </div>
                       </div>
                     </div>
-                      <div class="row">
+                     <!--  <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Fecha de ingreso:</label>
                           <input type="date" name="fecha_entrada" class="form-control" value="{{old('fecha_entrada', $paciente->fecha_entrada)}}" />
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                 
                     <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                     <div class="clearfix"></div>
@@ -143,7 +143,7 @@
 
          <div class="stats">
                     <i class="material-icons text-success">arrow_back</i>
-                    <a  href="{{route ('admin')}}"> Regresar al listado</a>
+                    <a  href="{{route ('Admin')}}"> Regresar al listado</a>
          </div>
      
 

@@ -15,9 +15,13 @@ class CreateDetalleDiagnosticoTable extends Migration
     {
         Schema::create('detalle_diagnostico', function (Blueprint $table) {
             $table->Increments('iddetalle_diagnostico');
-             $table->string('detalle_diagnostico', 250);
-            $table->string('tratamiento', 250);
-            $table->timestamps();
+            $table->unsignedInteger('iddiagnostico');
+            $table->foreign('iddiagnostico')->references('iddiagnostico')->on('diagnostico');
+            $table->string('detalle_diagnostico', 250)->nullable();
+            $table->integer('estado');
+        
+
+            // $table->timestamps();
         });
     }
 

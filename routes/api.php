@@ -13,6 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+
+Route::get('pacientes',function(){
+
+// return App\Pacientes::all();
+	// formatear los datos para traerlo a la tabla
+	return datatables()
+	->eloquent(App\Models\Pacientes::query())
+	->addColumn('btn', 'admin/action')
+	->rawColumns(['btn'])
+	->toJson();
+
 });
