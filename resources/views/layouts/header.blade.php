@@ -10,14 +10,14 @@
     Sistema de historias clinicas
   </title>
   <link rel="icon" type="image" href=" {{ asset ('img/icono.jpg')}}">
- <!--  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' /> -->
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link  href="{{ asset('css/material-dashboard-rtl.css')}}" rel="stylesheet" />
 
-<!--   <link href="{{ asset('css/material-dashboard.css')}}" rel="stylesheet" /> -->
+    <link href="{{ asset('css/material-dashboard.min.css')}}" rel="stylesheet" />
   <link href="{{ asset('css/material-dashboard.min.css')}}" rel="stylesheet" />
-  <link href="{{ asset('css/demo/demo.css')}}" rel="stylesheet" />
+      
 
   <script src="https://code.jquery.com/jquery-3.3.1.js"/></script>
 
@@ -29,9 +29,6 @@
  <script src="{{ asset ('js/diagnosticos.js')}}"></script>
  <script src="{{ asset ('js/jquery-3.4.1.slim.min.js')}}"></script>
 
- 
-
- 
   <!-- Estilo para quitar bordes de los texarea de los dignosticos generados (vista agregar diagnostico)-->
  <style>
  

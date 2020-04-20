@@ -92,7 +92,7 @@
                        <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Edad:</label>
-                          <input type="number" name="edad" class="form-control" value="{{old('edad', $paciente->edad)}}" />
+                          <input type="text" name="edad" class="form-control" value="{{old('edad', $paciente->edad)}}" />
                         </div>
                       </div>
                     </div>

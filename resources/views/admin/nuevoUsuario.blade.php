@@ -37,7 +37,7 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">DNI:</label>
+                          <label>DNI:</label>
                           <input type="number" name="dni" class="form-control" value="{{old('dni')}}" />
                             @if ($errors->has('dni'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -52,7 +52,7 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Apellido:</label>
+                          <label>Apellido:</label>
                           <input  type="text" name="apellido" class="form-control" value="{{old('apellido')}}" />
                            @if ($errors->has('apellido'))
                                <p style="color:#FF0000";>{{$errors->first('apellido')  }}</p>
@@ -61,7 +61,7 @@
                       </div>
                        <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Nombre:</label>
+                          <label>Nombre:</label>
                           <input type="text" name="nombre" class="form-control"  value="{{old('nombre')}}" />
                            @if ($errors->has('nombre'))
                              <p style="color:#FF0000";>{{$errors->first('nombre')  }}</p>
@@ -72,10 +72,9 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Género:</label>
-
-                          <br>
-                          <label>
+                          <label>Género:</label>
+                          <br>          
+                          <label> 
                             <input type="radio" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }}>
                             Masculino</label>
                           <label>
@@ -92,7 +91,7 @@
 
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Fecha nacimiento:</label>
+                          <label >Fecha nacimiento:</label>
                           <input type="date" name="fecha_nacimiento" class="form-control"  value="{{old('fecha_nacimiento')}}" onkeydown="return false"/>
                           @if ($errors->has('fecha_nacimiento'))
                              <p style="color:#FF0000";>{{$errors->first('fecha_nacimiento')  }}</p>
@@ -102,8 +101,8 @@
 
                        <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Edad:</label>
-                          <input type="number" name="edad" class="form-control" value="{{old('edad')}}" />
+                          <label>Edad:</label>
+                          <input type="text" name="edad" class="form-control" value="{{old('edad')}}" />
                             @if ($errors->has('edad'))
                              <p style="color:#FF0000";>{{$errors->first('edad')  }}</p>
                           @endif
@@ -112,9 +111,10 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-md-4">
+
+                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Obra social:</label>
+                          <label>Obra social:</label>
                           <input type="text" name="obra_social" class="form-control" value="{{old('obra_social')}}"  />
                            @if ($errors->has('obra_social'))
                            <p style="color:#FF0000";>{{$errors->first('obra_social')  }}</p>
@@ -124,7 +124,7 @@
 
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Localidad:</label>
+                          <label >Localidad:</label>
                           <input type="text" name="localidad" class="form-control" value="{{old('localidad')}}"  />
                             @if ($errors->has('localidad'))
                              <p style="color:#FF0000";>{{$errors->first('localidad')  }}</p>
@@ -133,7 +133,7 @@
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Provincia:</label>
+                          <label>Provincia:</label>
                           <input type="text" name="provincia" class="form-control" value="{{old('provincia')}}" />
                            @if ($errors->has('provincia'))
                              <p style="color:#FF0000";>{{$errors->first('provincia')  }}</p>

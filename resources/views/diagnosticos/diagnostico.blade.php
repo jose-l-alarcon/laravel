@@ -2,16 +2,12 @@
 @include('layouts/sidebar')
 @include('layouts/nav')
 
-      <div class="content">
-                
-
+     <div class="content">
         <div class="container-fluid">
 
-
-      <!--     <a href="{{route ('nuevoUsuario')}}" class="btn btn-success">Nuevo paciente</a>    -->
-    @if(Session::has('ingreso'))
+           @if(Session::has('ingreso'))
        <div class="row">
-        <div class="col-md-6 ml-auto mr-auto">
+        <div class="col-md-9 col-xs-9">
         <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <i class="material-icons">close</i>
@@ -26,104 +22,93 @@
 
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9 col-xs-9">
               <div class="card">
                 <div class="card-header card-header-success">
-                  <h4 class="card-title ">Evolución diaria</h4>
-                  <p class="card-category">Diagnósticos generados</p>
+                  <h4 class="card-title ">Evolución diaria de pacientes</h4>
+                  <p class="card-category">Ingresos generados</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                     <table id="pacientes" class="table" >
-        
-
-      
-
-            @if ($diagnostico->count())
-             <thead>
-                <tr>
-                  <th>Paciente</th>
-                  <th>DNI</th>
-                  <th>HC Num</th>
-                  <th>Edad</th>
-                  <th>Género</th>
-                  <th>Fecha ingreso</th>
-           
-                  <th>Opciones</th>
-
-                </tr>
-              </thead>
-          
-              @foreach ($diagnostico as $diagnostico)
-           
-                  
-                <tr class="gradeX">
-                  <td> {{ $diagnostico->apellido }} {{ $diagnostico->nombre }}</td>
-                  <td> {{ $diagnostico->dni }} </td>
-                  <td> {{ $diagnostico->nrohistoria_clinica }} </td>
-                  <td>{{ $diagnostico->edad }} </td>
-                  <td> {{ $diagnostico->genero }}</td>
-                  <td>{{ date("d/m/Y", strtotime($diagnostico->fecha_entrada)) }} </td>
-      
-                  <td>
-                    <a href="{{route('detalleDiagnostico', $diagnostico->iddiagnostico)}}" type="button" rel="tooltip" title="Detalles del ingreso" class="btn btn-outline-warning btn-sm">Detalles</a>
-
-                   <a  href="{{route('actualizarDiagnostico',$diagnostico->iddiagnostico)}}" type="button" rel="tooltip" title="Actualizar ingreso" class="btn btn-outline-primary btn-sm">Actualizar</a>
-                   
-
-                     <a  href="{{route('pdf',$diagnostico->iddiagnostico)}}" type="button" rel="tooltip" title="Actualizar ingreso" class="btn btn-outline-info btn-sm">PDF</a>
-                    </td>
-
+                    <table id="tabla" class="table">
+                    <div class="col-md-6 col-xs-6">
+                    </div>
                  
-                </tr>
-                      @endforeach
-                     @else
-                      <p>No hay diagnósticos generados.</p>
-                 @endif
-            
-           
-            </table>
+                    @if ($diagnostico->count())
+                      <thead class=" text-primary">
+                        <td>Paciente</td>
+                        <td>HC Num</td>
+                        <td>Fecha Ingreso</td>
+                        <td align="center">Opciones</td>
+                      </thead>
+                    @foreach ($diagnostico as $res)
+                
+                       <tr class="gradeX">
+                       <td> {{ $res->apellido }} {{ $res->nombre }}</td>
+                       <td> {{ $res->nrohistoria_clinica }} </td>
+                       <td>{{ date("d/m/Y", strtotime($res->fecha_entrada))}}</td>
+                      
+                           <td class="td-actions text-center"> 
+                              <a  href="{{route('detalleDiagnostico', $res->iddiagnostico)}}" type="button" rel="tooltip" title="Vista previa" class="btn btn-warning btn-sm">
+                               Vista previa
+                              </a>
+                              <a href="{{route('actualizarDiagnostico',$res->iddiagnostico)}}" type="button" rel="tooltip" title="Actualizar registro" class="btn btn-info btn-sm">
+                               Actualizar
+                              </a>
+                              <a  href="{{route('pdf',$res->iddiagnostico)}}" type="button" rel="tooltip" title="PDF" class="btn btn-danger btn-sm">
+                              PDF
+                              </a>
+                            </td>
+                      </tr>
+                             
+                              @endforeach
+                           @else
+                            <p>No hay diagnósticos generados.</p>
+                       @endif
+                    </table>
+
+                    <script>
+                    $(document).ready(function() {
+                    $('#tabla').DataTable(
+
+                    {
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay registros de pacientes",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                        "infoEmpty": "Mostrando 0 de 0 de 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Registros",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                              }
 
 
-<script>
-  $(document).ready(function() {
-    $('#pacientes').DataTable({
-         "language": {
-              "decimal": "",
-              "emptyTable": "No hay registros de pacientes",
-              "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
-              "infoEmpty": "Mostrando 0 de 0 de 0 Entradas",
-              "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-              "infoPostFix": "",
-              "thousands": ",",
-              "lengthMenu": "Mostrar _MENU_ Registros",
-              "loadingRecords": "Cargando...",
-              "processing": "Procesando...",
-              "search": "Buscar:",
-              "zeroRecords": "Sin resultados encontrados",
-              "paginate": {
-                  "first": "Primero",
-                  "last": "Ultimo",
-                  "next": "Siguiente",
-                  "previous": "Anterior"
-              }
-                    }
 
-         
-          });
-  } );
-</script>
-
-
+                    });
+                    } );
+                    </script>
 
                   </div>
                 </div>
+                
               </div>
             </div>
-
+      
           </div>
-        </div>
 
+
+        </div>
       </div>
 
       @include('layouts/footer')

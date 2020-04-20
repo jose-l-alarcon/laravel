@@ -11,7 +11,7 @@
 
     @if(Session::has('ingreso'))
        <div class="row">
-        <div class="col-md-6 ml-auto mr-auto">
+        <div class="col-md-8">
         <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <i class="material-icons">close</i>
@@ -27,7 +27,7 @@
 
     @if(Session::has('actualizado'))
        <div class="row">
-        <div class="col-md-6 ml-auto mr-auto">
+        <div class="col-md-8">
         <div class="alert alert-info">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <i class="material-icons">close</i>
@@ -41,7 +41,7 @@
       @endif
           
     <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-success">
                   <h4 class="card-title ">Lista de pacientes</h4>
@@ -54,13 +54,11 @@
              <thead>
                 <tr>
   
-                  <th width="40px">Apellido</th>
-                  <th width="40px">Nombre</th>
-                  <th width="40px">Género</th>
-                  <th width="10px">Edad</th>
-                  <th width="40px">Fecha Nacimiento</th>
-                  <th width="40px">Obra Social</th>
-                  <th width="120px"><center>Opciones</center></th>
+                  <th >Apellido</th>
+                  <th>Nombre</th>
+                  <th>Edad</th>
+                  <th>Obra social</th>
+                  <th><center>Opciones</center></th>
 
                 </tr>
               </thead>
@@ -80,18 +78,16 @@
        
              {data : "apellido" }, 
              {data : "nombre" },
-             {data : "genero" },
              {data : "edad" },
-             {data : "fecha_nacimiento" },
              {data : "obra_social" },
              {data : "btn"},
 
             ],
 
-            "columnDefs": 
-            [{targets:4, render:function(data){
-              return moment(data).format('DD/MM/YYYY');
-              }}],
+            // "columnDefs": 
+            // [{targets:4, render:function(data){
+            //   return moment(data).format('DD/MM/YYYY');
+            //   }}],
 
             
 

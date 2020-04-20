@@ -68,7 +68,7 @@ td.sinborde{
               </tr>
               <tr>
                    <td align="center" bgcolor="#F4F6F6"><strong>Edad</strong></td>
-                   <td align="center">{{$datospaciente->edad}} años</td>
+                   <td align="center">{{$datospaciente->edad}}</td>
                    <td align="center" bgcolor="#F4F6F6"><strong>Fecha <br>ingreso</strong></td>
                    <td align="center">{{ date("d-m-Y", strtotime($datospaciente->fecha_entrada)) }}</td>
                    <td align="center" bgcolor="#F4F6F6"><strong>Fecha de <br>evolución</strong></td>

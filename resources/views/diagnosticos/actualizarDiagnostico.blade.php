@@ -343,7 +343,7 @@
 
     <!-- termina el formulario -->
 
-   <div class="col-md-10 ml-auto mr-auto">
+   <div class="col-lg-12 col-md-12">
               <div class="card">
                 <div class="card-header card-header-info">
                   <h4 class="card-title">Diagnósticos</h4>
@@ -397,7 +397,7 @@
               </div>
             </div>
 
-      <div class="col-md-10 ml-auto mr-auto">
+      <div class="col-lg-12 col-md-12">
               <div class="card">
                 <div class="card-header card-header-info">
                   <h4 class="card-title">Medicación</h4>
@@ -487,7 +487,7 @@
 
           <div class="stats">
                     <i class="material-icons text-success">arrow_back</i>
-                    <a  href="{{route ('diagnosticos')}}"> Regresar a lista de diagnósticos</a>
+                    <a  href="{{route ('diagnosticos')}}"> Regresar al listado</a>
             </div>
 
           

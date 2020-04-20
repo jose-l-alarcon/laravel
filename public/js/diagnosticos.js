@@ -21,7 +21,7 @@
           if (detalles!="")
           {
 
-            var fila='<tr class="selected" id="filas'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><textarea class="sinborde" cols="60" name="detalles[]" readonly>'+detalles+'</textarea></td></tr>';
+            var fila='<tr class="selected" id="filas'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><textarea class="sinborde" colspan="3" name="detalles[]" readonly>'+detalles+'</textarea></td></tr>';
             cont++;
             limpiar();
             $('#tabladetalle').append(fila);
@@ -75,7 +75,7 @@
           if (detallesMedicacion!="" && detallesDosis!="" && detallesFecha!="") 
           { 
 
-            var fila2='<tr class="selected" id="filas2'+cont2+'"><td><button type="button" class="btn btn-warning" onclick="eliminar2('+cont2+');">X</button></td><td><td><textarea name="detallesMedicacion[]" class="sinborde" cols="15" readonly>'+detallesMedicacion+'</textarea></td><td><textarea name="detallesDosis[]" class="sinborde" cols="15" readonly>'+detallesDosis+'</textarea></td><td><input type="text" class="sinborde" cols="15" name="detallesFecha[]" value="'+detallesFecha+'"></td></tr>';
+            var fila2='<tr class="selected" id="filas2'+cont2+'"><td><button type="button" class="btn btn-warning" onclick="eliminar2('+cont2+');">X</button></td><td><td><textarea name="detallesMedicacion[]" class="sinborde" readonly>'+detallesMedicacion+'</textarea></td><td><textarea name="detallesDosis[]" class="sinborde" readonly>'+detallesDosis+'</textarea></td><td><input type="text" class="sinborde" cols="5" name="detallesFecha[]" value="'+detallesFecha+'"></td></tr>';
             cont2++;
             limpiar2();
             $('#tablamedicacion').append(fila2);

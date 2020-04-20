@@ -1,11 +1,9 @@
- <a href="{{route('detalle',[$idpaciente])}}" type="button"  title="Ver más datos" class="btn btn-outline-success btn-sm">
-                                Detalles
-                              </a>
 
-  <a href="{{route('editar',[$idpaciente])}}" type="button" rel="tooltip" title="Editar datos paciente" class="btn btn-outline-primary btn-sm">
-                               Editar
-                              </a>
-
- <a href="{{route('nuevodiagnostico',[$idpaciente])}}" type="button" rel="tooltip" title="Agregar diagnóstico" class="btn btn-outline-info btn-sm">
-                             Diagnóstico
-                            </a>
+  <td align="right"> 
+  <a href="{{route('detalle',[$idpaciente])}}"  type="button" rel="tooltip" title="Más datos del paciente" class="btn btn-warning btn-sm">
+    Ver datos
+  <a href="{{route('editar',[$idpaciente])}}" type="button" rel="tooltip" title="Editar registro" class="btn btn-info btn-sm"> Editar
+  </a>
+  <a  href="{{route('nuevodiagnostico',[$idpaciente])}}" type="button" rel="tooltip" title="Nuevo ingreso" class="btn btn-success btn-sm"> Nuevo ingreso
+  </a>
+</td> 

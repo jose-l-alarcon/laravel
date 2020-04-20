@@ -15,10 +15,10 @@
 
 
           <div class="row">
-             <div class="col-md-8">
+             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-success">
-                  <h4 class="card-title">Nuevo diagnóstico</h4>
+                  <h4 class="card-title">Nuevo ingreso</h4>
                   <p class="card-category">Complete los datos del formulario - Paciente :
                   {{$paciente->apellido}} {{$paciente->nombre}} - DNI: {{$paciente->dni}}</p>
                 </div>
@@ -34,7 +34,7 @@
 
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Fecha ingreso</label>
+                          <label>Fecha ingreso</label>
                           <input type="date" max={{$date}} name="fecha_entrada" class="form-control" value="{{old('fecha_entrada')}}" onkeydown="return false" />
                            @if ($errors->has('fecha_entrada'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -47,7 +47,7 @@
 
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">N° Historia Clínica</label>
+                          <label>N° Historia Clínica</label>
                           <input type="number" name="nrohistoria_clinica" class="form-control" value="{{old('nrohistoria_clinica')}}" />
                             @if ($errors->has('nrohistoria_clinica'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -59,7 +59,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">N° Habitación</label>
+                          <label>N° Habitación</label>
                           <input type="number" name="nrohabitacion" class="form-control" value="{{old('nrohabitacion')}}" />
                           @if ($errors->has('nrohabitacion'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -71,7 +71,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Cama</label>
+                          <label>Cama</label>
                           <input type="text" name="nrocama" class="form-control" value="{{old('nrocama')}}" />
                            @if ($errors->has('nrocama'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -87,7 +87,7 @@
                 <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Bipap</label>
+                          <label>Bipap</label>
                           <input type="text" name="bipap" class="form-control" value="{{old('bipap')}}" />
                            @if ($errors->has('bipap'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -100,7 +100,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Traqueostomia</label>
+                          <label>Traqueostomia</label>
                           <input type="text" name="traqueostomia" class="form-control" value="{{old('traqueostomia')}}" />
                              @if ($errors->has('traqueostomia'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -112,7 +112,7 @@
 
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">SNG</label>
+                          <label>SNG</label>
                           <input type="text" name="SNG" class="form-control" value="{{old('SNG')}}" />
                            @if ($errors->has('SNG'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -124,7 +124,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Sonda Vesical</label>
+                          <label>Sonda Vesical</label>
                           <input type="text" name="sonda_vesical" class="form-control" value="{{old('sonda_vesical')}}" />
                           @if ($errors->has('sonda_vesical'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -141,7 +141,7 @@
                      <div class="row"> 
                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Peso</label>
+                          <label>Peso</label>
                           <input type="number" name="signo_vital_peso" class="form-control" value="{{old('signo_vital_peso')}}" />
                            @if ($errors->has('signo_vital_peso'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -153,7 +153,7 @@
                       </div>
                       <div class="col-md-2">
                         <div class="form-group">
-                          <label class="bmd-label-floating">FC</label>
+                          <label>FC</label>
                           <input type="number" name="signo_vital_FC" class="form-control" value="{{old('signo_vital_FC')}}" />
                            @if ($errors->has('signo_vital_FC'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -165,7 +165,7 @@
                       </div>
                       <div class="col-md-2">
                         <div class="form-group">
-                          <label class="bmd-label-floating">FR</label>
+                          <label>FR</label>
                           <input type="number" name="signo_vital_FR" class="form-control" value="{{old('signo_vital_FR')}}" />
                            @if ($errors->has('signo_vital_FR'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -177,7 +177,7 @@
                       </div>
                       <div class="col-md-2">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Sat02</label>
+                          <label>Sat02</label>
                           <input type="number" name="signo_vital_Sat" class="form-control"value="{{old('signo_vital_Sat')}}" />
                            @if ($errors->has('signo_vital_Sat'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -191,7 +191,7 @@
 
                        <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Temperatura</label>
+                          <label>Temperatura</label>
                           <input type="number" name="signo_vital_temperatura" class="form-control" value="{{old('signo_vital_temperatura')}}" />
                            @if ($errors->has('signo_vital_temperatura'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -250,17 +250,16 @@
                           <div class="card-body">
                                 <table id="tabladetalle" class="table table-hover">
                                 <thead>
-                                  <tr>
+                             
                                   <th></th>
                                   <th></th>
-                                  <th></th>
-                                </tr>
+                              
                                 </thead>
                                <tfoot>
                             
-                                  <th width="25px"></th>
                                   <th></th>
                                   <th></th>
+                                  
                                  </tfoot>
                                   
                                   </table>
@@ -277,7 +276,7 @@
              <div class="col-md-12 ml-auto mr-auto">
               <div class="card">
                   <!-- campo textarea para ingresar el diagnostico -->
-                     <div class="col-md-12">
+                     <div class="col-md-12 col-xs-12" >
                           <div class="form-group">
                             <label>Ingreso de la medicación</label>
                             <div class="form-group">
@@ -319,39 +318,33 @@
                         </div>
                        </div>
                   
-                  <!-- Tabla para insertar la medicacion -->
-                   <div class="row">
-                     <div class="col-md-12">
-                        <div class="col-md-8"> 
-                          <div class="col-md-10 col-md-offset-6">  
-                             <label>Lista de medicación</label>
-                           </div>
-                        </div>
-                          <div class="card-body">
-                                <table id="tablamedicacion" class="table table-hover">
-                                <thead>
-                                  <tr>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                  <th></th>
-                                </tr>
-                                </thead>
-                               <tfoot>
-                            
-                                  <th ></th>
-                                  <th ></th>
-                                  <th ></th>
-                                  <th ></th>
-                                  <th ></th>
-                              
+                
 
-                                 </tfoot>
-                                  
-                                  </table>
-                                </div>
-                             </div>
-                          </div>
+            <div class="col-lg-8 col-md-12">
+              <div class="card">
+               
+                <div class="col-md-10 col-md-offset-6">  
+                             <label>Lista de medicamentos</label>
+                           </div>
+           
+                <div class="card-body table-responsive">
+                  <table id="tablamedicacion" class="table table-hover">
+                    <thead>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+       
                    <!-- Tabla para insertar la medicacion -->
               </div>
             </div>
@@ -459,11 +452,6 @@
                     </div>
 
 
-                    
-
-
-
-
                     <div class="col-lg-4 col-md-12">
                     <button type="submit" onclick="btn_guardar()" class="btn btn-primary pull-right">Guardar</button>
                     </div>
@@ -473,11 +461,13 @@
             </div>
 
         
-
-             <div class="col-lg-4 col-md-12">
+          </div>
+        
+        <div class="row">
+         <div class="col-lg-6 col-md-12">
               <div class="card">
                 <div class="card-header card-header-warning">
-                  <h4 class="card-title">Diagnosticos generados</h4>
+                  <h4 class="card-title">Ingresos registrados:</h4>
                   <p class="card-category">{{$paciente->apellido}} {{$paciente->nombre}} - DNI: {{$paciente->dni}}</p>
                 </div>
                 <div class="card-body table-responsive">

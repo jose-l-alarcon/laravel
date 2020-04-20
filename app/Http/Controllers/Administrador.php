@@ -12,6 +12,8 @@ use App\Http\Requests\FormDataRequest;
 use App\Http\Requests\DetalleDataRequest;
 use App\Http\Requests\MedicacionDataRequest;
 use App\Http\Requests\DiagnosticoDataRequest;
+use App\Http\Requests\PacienteDataRequest;
+
 //clase request validar formularios
 
 use Illuminate\Support\Facades\DB;
@@ -73,42 +75,36 @@ public function detalle_paciente ($idpaciente){
 
     }
 
-   public function insertarUsuario (){
-                    
-                    // insertar nuevos usuarios, metodo validate() para validar datos de los campos del formulario
+   public function insertarUsuario (PacienteDataRequest $request){
 
-                    $data = request()->validate([
-                      'dni' => ['required','unique:pacientes,dni','max:8'],
-                      'apellido' => 'required',
-                      'nombre' =>'required',
-                      'genero' => 'required',
-                      'fecha_nacimiento' => 'required',
-                      'edad' => 'required',
-                      'obra_social' =>['required','max:15'],
-                      'localidad' => 'required',
-                      'provincia' =>'required',
-                    
-                   ]); 
-
-                    Pacientes::create([
-                          'dni' => $data['dni'],
-                          'apellido' => $data['apellido'],
-                          'nombre' => $data['nombre'],
-                          'genero' => $data['genero'],
-                          'fecha_nacimiento' => $data['fecha_nacimiento'],
-                          'edad' => $data['edad'],
-                          'obra_social' => $data['obra_social'],
-                          'localidad' => $data['localidad'],
-                          'provincia' => $data['provincia'],
+                    // $fecha_nacimiento = $request->get('fecha_nacimiento'
+                  
+                     DB::beginTransaction();
+                     try {
+          
+                     $paciente= new Pacientes;
+                     $paciente->dni=$request->get('dni');
+                     $paciente->apellido=$request->get('apellido');
+                     $paciente->nombre=$request->get('nombre');
+                     $paciente->genero=$request->get('genero');
+                     $paciente->fecha_nacimiento=$request->get('fecha_nacimiento');
+                     $paciente->edad=$request->get('edad');
+                     $paciente->obra_social= $request->get('obra_social');
+                     $paciente->localidad= $request->get('localidad');
+                     $paciente->provincia=$request->get('provincia');
+                     $paciente->save();
                        
-
-                     ]);
-
-                      return redirect()->route('Admin')->with('ingreso','El registro se agrego correctamente');
+                       DB::commit();
+                          return redirect()->route('Admin')->with('ingreso','El registro se agrego correctamente');
+                      } 
+                      catch (\Exception $e) {
+                    DB::rollback();
+                       } 
+                    
+                   
                 } 
 
-                   // return redirect()->route('rutascreadas');  redireccionar una vez que se insertar datos 
-
+                  
      
 
     
@@ -163,13 +159,12 @@ public function detalle_paciente ($idpaciente){
             ->join('pacientes', 'diagnostico.idpaciente', '=', 'pacientes.idpaciente')
             ->select('diagnostico.*', 'pacientes.*')
             ->orderBy('apellido', 'asc')
-            ->get();
-
-     
+            ->paginate(5);
+      
             // ordenar pacientes por apellido en forma descendente
             return view('diagnosticos/diagnostico' , compact('diagnostico')) ;
  
-      } 
+      }
 
 
    
