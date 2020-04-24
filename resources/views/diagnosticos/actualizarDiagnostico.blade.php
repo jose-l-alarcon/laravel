@@ -4,67 +4,22 @@
 
 <div class="content">
         <div class="container-fluid">
-  
-     @if(Session::has('info'))
-       <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-        <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <center><b>{{Session::get('info')}} </b></center></span>
-         </div>
-
+        
+   <div class="row">
+    <div class="col-md-10 ml-auto mr-auto">
+   <!-- devuelve verdadero si existe algun error  -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <p><center>Existen errores al enviar el formulario</center> </p>
+         <!--  <ul>
+           @foreach ($errors->all() as $error)
+             <li> {{$error}}</li>
+           @endforeach
+        </ul> -->
         </div>
+        @endif
       </div>
-      @endif
-
-       @if(Session::has('success'))
-       <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-        <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <center><b>{{Session::get('success')}} </b></center></span>
-         </div>
-
-        </div>
-      </div>
-      @endif
-
-
-     @if(Session::has('eliminar'))
-       <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-        <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <center><b>{{Session::get('eliminar')}} </b></center></span>
-         </div>
-
-        </div>
-      </div>
-      @endif
-
-       @if(Session::has('actualizado'))
-       <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-        <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <center><b>{{Session::get('actualizado')}} </b></center></span>
-         </div>
-
-        </div>
-      </div>
-      @endif
+    </div>
 
  
           <div class="row">
@@ -362,6 +317,7 @@
                     <tbody>
                      @foreach ($detalles as $detalles)
                       <tr>
+
                         <td width="50px">{{$loop->iteration}}</td>
                         <td>{{$detalles->detalle_diagnostico}}</td>
                         <td width="500px" class="td-actions text-right">

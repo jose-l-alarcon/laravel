@@ -15,17 +15,17 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           
-         <li class="nav-item active">
+       <!--   <li class="nav-item active">
             <a class="nav-link" href="{{ url('/nuevoUsuario') }}">
               <i class="material-icons">person_add</i>
               <p>Agregar paciente</p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item active">
             <a class="nav-link" href="{{ url('/Admin') }}">
               <i class="material-icons">people_alt</i>
-              <p>Lista de pacientes</p>
+              <p>Pacientes</p>
             </a>
           </li>
           <li class="nav-item active ">

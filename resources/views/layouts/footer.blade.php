@@ -11,6 +11,9 @@
     </div>
   </div>
 
+  @include('sweetalert::alert')
+
+
   <!--   Core JS Files   -->
 
   <script src="{{ asset ('js/core/jquery.min.js')}}"></script>

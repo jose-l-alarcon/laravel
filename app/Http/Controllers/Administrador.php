@@ -36,10 +36,13 @@ use Illuminate\Validation\Rule;
  use Barryvdh\DomPDF\Facade as PDF;
  //GENERAR PDF
 
+  // MENSAJES ALERTA
+ use RealRashid\SweetAlert\Facades\Alert;
 class Administrador extends Controller
      {
     
    public function admin(){
+
 
           return view('admin/admin') ;
    
@@ -68,7 +71,7 @@ public function detalle_paciente ($idpaciente){
 
             $pacientes = Pacientes::all(); 
             // ordenar pacientes por apellido en forma descendente
-      
+    
 
        return view('admin/nuevoUsuario', compact('pacientes')) ;
              // vista al formulario para agregar nuevos usuarios 
@@ -95,7 +98,8 @@ public function detalle_paciente ($idpaciente){
                      $paciente->save();
                        
                        DB::commit();
-                          return redirect()->route('Admin')->with('ingreso','El registro se agrego correctamente');
+
+                          return redirect()->route('Admin')->with('success', 'El paciente se agrego correctamente');
                       } 
                       catch (\Exception $e) {
                     DB::rollback();
@@ -146,8 +150,7 @@ public function detalle_paciente ($idpaciente){
               $paciente->update($data);
 
               // redireccionar a la vista admin
-               return redirect()->route('Admin')->with('actualizado','El registro se actualizo correctamente');
-
+               return redirect()->route('Admin')->with('success', 'El registro se actualizo correctamente');
 
           }
 
@@ -160,7 +163,7 @@ public function detalle_paciente ($idpaciente){
             ->select('diagnostico.*', 'pacientes.*')
             ->orderBy('apellido', 'asc')
             ->paginate(5);
-      
+          
             // ordenar pacientes por apellido en forma descendente
             return view('diagnosticos/diagnostico' , compact('diagnostico')) ;
  
@@ -303,7 +306,7 @@ public function detalle_paciente ($idpaciente){
                       
                       
                        DB::commit();
-                       return redirect()->route('diagnosticos')->with('ingreso','El registro se agrego correctamente');
+                       return redirect()->route('diagnosticos')->with('success','El registro se agrego correctamente');
                       } 
                       catch (\Exception $e) {
                     DB::rollback();
@@ -464,7 +467,7 @@ public function detalle_paciente ($idpaciente){
                      $diagnostico->update();
 
                       DB::commit();
-                      return back()->with('info','El registro se actualizo correctamente');
+                      return back()->with('success','El registro se actualizo correctamente');
                       } 
                       catch (\Exception $e) {
                     DB::rollback();
@@ -491,7 +494,7 @@ public function detalle_paciente ($idpaciente){
                 DB::commit();
              
 
-                return redirect()->route('actualizarDiagnostico',[$detalle_diagnostico->iddiagnostico])->with('info','El registro se actualizo correctamente');
+                return redirect()->route('actualizarDiagnostico',[$detalle_diagnostico->iddiagnostico])->with('success','El registro se actualizo correctamente');
                 } 
                 catch (\Exception $e) {
               DB::rollback();
@@ -507,7 +510,7 @@ public function detalle_paciente ($idpaciente){
 
 
               $Detallediagnostico->delete();
-               return back()->with('eliminar','El registro se elimino correctamente');          
+               return back()->with('info','El registro se elimino correctamente');         
 
           }
 
@@ -553,7 +556,7 @@ public function detalle_paciente ($idpaciente){
                 DB::commit();
              
 
-                return redirect()->route('actualizarDiagnostico',[$medicacion->iddiagnostico])->with('actualizado','El registro se actualizo correctamente');
+                return redirect()->route('actualizarDiagnostico',[$medicacion->iddiagnostico])->with('success','El registro se actualizo correctamente');
                 } 
                 catch (\Exception $e) {
               DB::rollback();
@@ -570,7 +573,7 @@ public function detalle_paciente ($idpaciente){
 
 
               $detallemedicacion->delete();
-               return back()->with('eliminar','El registro se elimino correctamente');          
+               return back()->with('info','El registro se elimino correctamente');          
 
           }
 

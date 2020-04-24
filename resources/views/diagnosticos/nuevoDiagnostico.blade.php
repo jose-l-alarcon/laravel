@@ -33,7 +33,7 @@
                
 
                       <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="form-group"> 
                           <label>Fecha ingreso</label>
                           <input type="date" max={{$date}} name="fecha_entrada" class="form-control" value="{{old('fecha_entrada')}}" onkeydown="return false" />
                            @if ($errors->has('fecha_entrada'))

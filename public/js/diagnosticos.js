@@ -110,6 +110,8 @@
       jQuery.validator.messages.required = 'Campo obligatorio';
       $('#form').validate({ // initialize the plugin
 
+  
+
         rules: {
 
             fecha_entrada: {

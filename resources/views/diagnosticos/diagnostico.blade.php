@@ -108,6 +108,14 @@
           </div>
 
 
+        <!--  <div class="row">
+            <div class="col-md-9 col-xs-9">
+           <a href="" class="btn btn-round btn-fill btn-default">Pacientes dados de alta</a>
+
+                </div>
+          </div> -->
+
+
         </div>
       </div>
 

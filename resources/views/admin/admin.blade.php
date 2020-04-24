@@ -8,6 +8,16 @@
 
  <div class="container-fluid">
 
+  <div class="row">
+         <div class="col-md-12">
+      <a href="{{ url('/nuevoUsuario') }}" class="btn btn-round btn-fill btn-success"> 
+        <i class="material-icons">person_add</i>
+       Agregar  paciente
+      </a>
+
+          </div>
+   </div>
+
 
     @if(Session::has('ingreso'))
        <div class="row">
