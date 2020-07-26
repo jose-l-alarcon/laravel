@@ -11,7 +11,7 @@
    <!-- devuelve verdadero si existe algun error  -->
         @if ($errors->any())
         <div class="alert alert-danger">
-          <p> Existen errores al enviar el formulario </p>
+          <p> <center>Existen errores al enviar el formulario </center></p>
          <!--  <ul>
            @foreach ($errors->all() as $error)
              <li> {{$error}}</li>
@@ -35,7 +35,7 @@
                   {!!csrf_field()!!}   
             <!-- token agregado para evitar ataques post de otros sitios , ejemplo que por el formulario se quiera ingresar un nuevo usuario -->
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>DNI:</label>
                           <input type="number" name="dni" class="form-control" value="{{old('dni')}}" />
@@ -50,7 +50,23 @@
                         <!-- preguntar si existe algun error en la variable error->dni, si es verdadero se imprime el primer error   -->
                         </div>
                       </div>
-                      <div class="col-md-4">
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>N° Historia clínica:</label>
+                          <input type="text" name="hcnum" class="form-control" value="{{old('hcnum')}}" />
+                            @if ($errors->has('hcnum'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('hcnum')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+
+                        <!-- value="{{old('dni')}}" nos permite mantener el valor del campo al enviar el formulario -->
+
+                        <!-- preguntar si existe algun error en la variable error->dni, si es verdadero se imprime el primer error   -->
+                        </div>
+                      </div>
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label>Apellido:</label>
                           <input  type="text" name="apellido" class="form-control" value="{{old('apellido')}}" />
@@ -59,7 +75,7 @@
                             @endif
                         </div>
                       </div>
-                       <div class="col-md-4">
+                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Nombre:</label>
                           <input type="text" name="nombre" class="form-control"  value="{{old('nombre')}}" />
@@ -69,13 +85,14 @@
                         </div>
                       </div>
                     </div>
+
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label>Género:</label>
                           <br>          
                           <label> 
-                            <input type="radio" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }}>
+                            <input type="radio" name="genero" value="Masculino" {{old('genero') == 'Masculino' ? 'checked' : '' }}>
                             Masculino</label>
                           <label>
                             <label>
@@ -149,26 +166,8 @@
               </div>
             </div>
 
-         <div class="col-md-4">
-              <div class="card card-profile">
-                <div class="card-avatar">
-                  <a>
-                    <img class="img" src=" {{ asset ('img/paci.png')}}" />
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h6 class="card-category text-gray"> </h6>
-                  <h4 class="card-title">Sistema de historias clínicas</h4>
-                  <p class="card-description">
-                    {{$pacientes->count()}} paciente/s registrados
-                  </p>
-                  <!-- <a href="#pablo" class="btn btn-primary btn-round">Follow</a> -->
-                </div>
-              </div>
-            </div>
-
-
         </div>
+    
       
 
          <div class="stats">
@@ -177,7 +176,8 @@
          </div>
      
 
-      </div>
+   </div>
+    </div>
 
       @include('layouts/footer')
 

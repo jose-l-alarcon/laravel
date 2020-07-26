@@ -47,7 +47,7 @@
                     </div>   
 
                    <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Fecha Inicio</label>
                            <input type="date" class="form-control" name="dia_inicio" value="{{old('dia_inicio', $medicacion->dia_inicio)}}"/>
@@ -58,10 +58,23 @@
                            @endif
                         </div>
                       </div>
-                      <div class="col-md-6">
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Fin medicación</label>
+                           <input type="date" class="form-control" name="fecha_fin" value="{{old('fecha_fin', $medicacion->fecha_fin)}}"/>
+                           @if ($errors->has('fecha_fin'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('fecha_fin')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Dias</label>
-                          <input type="text" class="form-control" name="dias" value="{{old('dias', $medicacion->dias)}}"/>
+                          <input type="number" class="form-control" name="dias" value="{{old('dias', $medicacion->dias)}}"/>
                            @if ($errors->has('dias'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('dias')  }}</p>

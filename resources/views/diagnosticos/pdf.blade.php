@@ -60,7 +60,7 @@ td.sinborde{
               </tr>
                <tr>
                   <td align="center" bgcolor="#F4F6F6"><strong>HC Num</strong></td>
-                  <td align="center" colspan="5" >{{$datospaciente->nrohistoria_clinica}}</td>
+                  <td align="center" colspan="5" >{{$datospaciente->hcnum}}</td>
               </tr>
                <tr>
                   <td align="center" bgcolor="#F4F6F6"><strong>Días de <br>internación</strong></td>
@@ -95,7 +95,9 @@ td.sinborde{
               <tr>
                   <td align="center" bgcolor="#F4F6F6"><strong>Bipap</strong></td>
                    <td align="center" colspan="1">{{$datospaciente->bipap}}</td>    
-                   <td align="center" colspan="3" bgcolor="#F4F6F6"><strong><u>SIGNOS VITALES:</u> PESO</strong></td>   
+                   <td align="center" colspan="1" bgcolor="#F4F6F6"><strong><u>SIGNOS VITALES</u>&nbsp;TA: </strong></td> 
+                   <td align="center" colspan="1"></td>
+                   <td align="center" colspan="1" bgcolor="#F4F6F6"><strong> PESO </strong></td>   
                    <td align="center" colspan="1">{{$datospaciente->signo_vital_peso}}</td>   
               </tr>
 
@@ -124,11 +126,22 @@ td.sinborde{
                  
               </tr>
 
+               <tr>
+                  <td align="center" bgcolor="#F4F6F6"><strong>BALANCE</strong></td>
+                  <td align="center"><strong>INGRESO: {{$datospaciente->balance_ingreso}}</strong></td>
+                  <td><strong>EGRESO: {{$datospaciente->balance_egreso}}</strong></td>
+                  <td><strong>BALANCE: {{$datospaciente->balance_balance}}</strong></td>
+                  <td><strong>FLUJO: {{$datospaciente->balance_flujo}}</strong></td>
+                  <td></td>
+                 
+               </tr>
+
               <tr>
                   <td align="center" bgcolor="#F4F6F6" class="sinborde"><strong>MEDICACION</strong></td>
                   <td align="center" colspan="1" bgcolor="#F4F6F6"><strong>DESCRIPCION</strong></td>
-                  <td align="center" colspan="2" bgcolor="#F4F6F6"><strong>DOSIS</strong></td>
-                  <td align="center" colspan="1" bgcolor="#F4F6F6"><strong>DIA DE INICIO</strong></td>
+                  <td align="center" colspan="1" bgcolor="#F4F6F6"><strong>DOSIS</strong></td>
+                  <td align="center" colspan="1" bgcolor="#F4F6F6"><strong>DESDE</strong></td>
+                  <td align="center" colspan="1" bgcolor="#F4F6F6"><strong>HASTA</strong></td>
                   <td align="center" colspan="1" bgcolor="#F4F6F6"><strong>DIAS
                  </strong></td>
                  
@@ -138,7 +151,29 @@ td.sinborde{
                   <td align="center" colspan="1">{{$loop->iteration}}  </td>
                   <td style="border-right: hidden;" colspan="1">{{$detallesMedicina->medicacion}}</td>
                   <td colspan="2" >{{$detallesMedicina->dosis}}</td>
-                  <td align="center" colspan="1" > {{ date("d/m/Y", strtotime($detallesMedicina->dia_inicio)) }}</td>
+                  <td align="center" colspan="1" >
+                   
+                        @if(is_null($detallesMedicina->dia_inicio))
+                        <p></p>
+                        @else
+                        {{ date("d/m/Y", strtotime($detallesMedicina->dia_inicio)) }}
+                        @endif
+
+         
+ 
+                   </td>
+
+                    <td align="center" colspan="1" >
+                   
+                        @if(is_null($detallesMedicina->fecha_fin))
+                        <p></p>
+                        @else
+                        {{ date("d/m/Y", strtotime($detallesMedicina->fecha_fin)) }}
+                        @endif
+
+         
+ 
+                   </td>
                   <td align="center" colspan="1" >{{$detallesMedicina->dias}}</td>
             
               </tr>
@@ -146,40 +181,36 @@ td.sinborde{
 
               <tr>
                   <td align="center" bgcolor="#F4F6F6"><strong>APORTE ORAL</strong></td>
-                  <td colspan="5">{{$datospaciente->aporte_oral}}</td>
+                  <td colspan="5">{!!nl2br($datospaciente->aporte_oral)!!}</td>
                  
               </tr>
 
                <tr>
                   <td  align="center"  bgcolor="#F4F6F6"><strong>Examen fisico</strong></td>
-                   <td colspan="5">{{$datospaciente->examen_fisico}}
+                   <td colspan="5">{!!nl2br($datospaciente->examen_fisico)!!}
 
                    </td>
               </tr>
 
               <tr>
                   <td  align="center" bgcolor="#F4F6F6"><strong>Examenes <br> complementarios</strong></td>
-                  <td colspan="5" >{{$datospaciente->examen_complementario}}</td>
+                  <td colspan="5" >{!!nl2br($datospaciente->examen_complementario)!!}</td>
                  
               </tr>
 
               <tr>
                   <td align="center" bgcolor="#F4F6F6"><strong>CULTIVOS</strong></td>
-                  <td colspan="5" >{{$datospaciente->cultivo}}</td>
+                  <td colspan="5" >{!!nl2br($datospaciente->cultivo)!!}</td>
                  
               </tr>
 
                <tr>
                     <td  align="center" bgcolor="#F4F6F6"><strong>Comentarios</strong></td>
 
-                  <td colspan="5">{{$datospaciente->comentarios}}</td>
+                  <td colspan="5">{!!nl2br($datospaciente->comentarios)!!}</td>
               </tr> 
 
-               <tr>
-                    <td  align="center" bgcolor="#F4F6F6"><strong>Aspecto social</strong></td>
-
-                  <td  align="justify" colspan="5">{{$datospaciente->aspecto_social}}</td>
-              </tr>   
+               
   
 
 

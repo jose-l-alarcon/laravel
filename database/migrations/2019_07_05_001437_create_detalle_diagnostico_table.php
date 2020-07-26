@@ -17,7 +17,7 @@ class CreateDetalleDiagnosticoTable extends Migration
             $table->Increments('iddetalle_diagnostico');
             $table->unsignedInteger('iddiagnostico');
             $table->foreign('iddiagnostico')->references('iddiagnostico')->on('diagnostico');
-            $table->string('detalle_diagnostico', 250)->nullable();
+            $table->longText('detalle_diagnostico')->nullable();
             $table->integer('estado');
         
 

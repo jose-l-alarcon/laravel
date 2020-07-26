@@ -30,7 +30,7 @@ class DetalleDataRequest extends FormRequest
 
      public function messages(){
         return [
-            'detalle_diagnostico.required' => 'No puede actualizar con un campo vacio',
+            'detalle_diagnostico.required' => 'Error , intenta enviar un campo vacio',
            
                    ];
     }

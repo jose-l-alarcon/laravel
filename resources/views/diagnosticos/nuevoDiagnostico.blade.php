@@ -6,13 +6,6 @@
         <div class="container-fluid">
 
 
-<div class="text-success">
-    @if(Session::has('message'))
-        {{Session::get('message')}}
-    @endif
-</div>
-
-
 
           <div class="row">
              <div class="col-md-12">
@@ -45,18 +38,7 @@
                         </div>
                       </div>
 
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label>N° Historia Clínica</label>
-                          <input type="number" name="nrohistoria_clinica" class="form-control" value="{{old('nrohistoria_clinica')}}" />
-                            @if ($errors->has('nrohistoria_clinica'))
-                     <!-- preguntar si la vsriable contiene algiun error -->
-                           <p style="color:#FF0000";>{{$errors->first('nrohistoria_clinica')  }}</p>
-                           <!-- $errors->first imprime el primer error encontrado -->
-                           @endif
-                       
-                        </div>
-                      </div>
+                      
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>N° Habitación</label>
@@ -139,7 +121,7 @@
                        
                     <label>Signos Vitales:</label>
                      <div class="row"> 
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <div class="form-group">
                           <label>Peso</label>
                           <input type="number" name="signo_vital_peso" class="form-control" value="{{old('signo_vital_peso')}}" />
@@ -151,6 +133,21 @@
                          
                         </div>
                       </div>
+
+                       <div class="col-md-2">
+                        <div class="form-group">
+                          <label>TA</label>
+                          <input type="text" name="signo_vital_ta" class="form-control" value="{{old('signo_vital_ta')}}" />
+                           @if ($errors->has('signo_vital_ta'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('signo_vital_ta')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                         
+                        </div>
+                      </div>
+
+
                       <div class="col-md-2">
                         <div class="form-group">
                           <label>FC</label>
@@ -189,7 +186,7 @@
                         </div>
                       </div>
 
-                       <div class="col-md-3">
+                       <div class="col-md-2">
                         <div class="form-group">
                           <label>Temperatura</label>
                           <input type="number" name="signo_vital_temperatura" class="form-control" value="{{old('signo_vital_temperatura')}}" />
@@ -202,6 +199,85 @@
                         </div>
                       </div>
 
+                    </div>
+
+              <!-- ----------- signos vitales   ---------------- -->
+
+                <!-- ----------- balance   ---------------- -->
+
+              <label>Balance:</label>
+                     <div class="row"> 
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Ingreso</label>
+                          <input type="text" name="balance_ingreso" class="form-control" value="{{old('balance_ingreso')}}" />
+                           @if ($errors->has('balance_ingreso'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_ingreso')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                         
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Egreso</label>
+                          <input type="text" name="balance_egreso" class="form-control" value="{{old('balance_egreso')}}" />
+                           @if ($errors->has('balance_egreso'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_egreso')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Balance</label>
+                          <input type="text" name="balance_balance" class="form-control" value="{{old('balance_balance')}}" />
+                           @if ($errors->has('balance_balance'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_balance')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Flujo</label>
+                          <input type="text" name="balance_flujo" class="form-control" value="{{old('balance_flujo')}}" />
+                           @if ($errors->has('balance_flujo'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_flujo')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                         
+
+                        </div>
+                      </div>
+
+                       
+
+                    </div>
+
+
+                     <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label >Motivo de consulta</label>
+                          <div class="form-group">
+                          <!--   <label class="bmd-label-floating">Detalles:</label> -->
+                            <textarea class="form-control" name="motivoConsulta" rows="4">{{old('motivoConsulta')}}</textarea>
+                             @if ($errors->has('motivoConsulta'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                          <p style="color:#FF0000";>{{$errors->first('motivoConsulta')}}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                                
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
      
@@ -228,7 +304,7 @@
                                <div class="col-md-3">
                                   <div class="form-group">
                                   <label class="text-primary"></label>
-                                    <button type="button" id="btn_add" class="btn btn-round btn-fill btn-info">
+                              <button type="button" id="btn_add" class="btn btn-round btn-fill btn-info">
                                           Agregar
                                     </button>
                                   </div>
@@ -239,33 +315,31 @@
                         </div>
                        </div>
                   
-                  <!-- Tabla donde se insertan los diagnosticos -->
-                   <div class="row">
-                     <div class="col-md-12">
-                        <div class="col-md-8"> 
-                          <div class="col-md-10 col-md-offset-6">  
-                             <label>Lista de diagnósticos generados</label>
-                           </div>
+                          <!-- Tabla donde se insertan los diagnosticos -->
+                  <div class="col-lg-8 col-md-12">
+                      <div class="card">
+                       
+                        <div class="col-md-10 col-md-offset-6">  
+                                     <label>Lista de diagnósticos</label>
+                                   </div>
+                   
+                        <div class="card-body table-responsive">
+                          <table id="tabladetalle" class="table table-hover">
+                            <thead>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                              </tr>
+              
+                            </tbody>
+                          </table>
                         </div>
-                          <div class="card-body">
-                                <table id="tabladetalle" class="table table-hover">
-                                <thead>
-                             
-                                  <th></th>
-                                  <th></th>
-                              
-                                </thead>
-                               <tfoot>
-                            
-                                  <th></th>
-                                  <th></th>
-                                  
-                                 </tfoot>
-                                  
-                                  </table>
-                                </div>
-                             </div>
-                          </div>
+                      </div>
+                    </div>
                    <!-- Tabla donde se insertan los diagnosticos -->
               </div>
             </div>
@@ -283,21 +357,21 @@
                              <div class="row">
 
                                 
-                              <div class="col-md-4"> 
+                              <div class="col-md-3"> 
                                   <div class="form-group">
                                      <label>Medicación:</label>
                                      <input type="text" name="medicacion" id="medicacion" class="form-control"/>
                                     </div>    
                                 </div>
 
-                               <div class="col-md-4"> 
+                               <div class="col-md-3"> 
                                   <div class="form-group">
                                      <label>Dosis:</label>
                                      <input type="text" name="dosis" id="dosis" class="form-control"/>
                                     </div>    
                                 </div>
 
-                                <div class="col-md-4"> 
+                                <div class="col-md-3"> 
                                   <div class="form-group">
                                      <label>Fecha inicio:</label>
                                       <input type="date" max={{$date}} name="dia_inicio" id="dia_inicio" class="form-control" onkeydown="return false"/>
@@ -333,7 +407,6 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -436,20 +509,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>Aspecto social</label>
-                          <textarea class="form-control" name="aspecto_social" rows="2">{{old('aspecto_social')}}</textarea>
-                             @if ($errors->has('aspecto_social'))
-                     <!-- preguntar si la vsriable contiene algiun error -->
-                           <p style="color:#FF0000";>{{$errors->first('aspecto_social')  }}</p>
-                           <!-- $errors->first imprime el primer error encontrado -->
-                           @endif
-                             
-                        </div>
-                      </div>
-                    </div>
+                   
 
 
                     <div class="col-lg-4 col-md-12">
@@ -462,46 +522,11 @@
 
         
           </div>
-        
-        <div class="row">
-         <div class="col-lg-6 col-md-12">
-              <div class="card">
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Ingresos registrados:</h4>
-                  <p class="card-category">{{$paciente->apellido}} {{$paciente->nombre}} - DNI: {{$paciente->dni}}</p>
-                </div>
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-
-                    @if ($diagnostico->count())
-                    <thead class="text-warning">
-                      <th>Fecha ingreso</th>
-                      <th>Opción</th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                      @foreach ($diagnostico as $diagnostico)
-                        <td>{{ date("d/m/Y", strtotime($diagnostico->fecha_entrada)) }} </td>
-                    <td> <a href="{{route('detalleDiagnostico', $diagnostico->iddiagnostico)}}" type="button" rel="tooltip" title="Editar datos paciente" class="btn btn-outline-warning btn-sm">Detalles</a>
-                        </td>
-                      </tr>
-                      
-                       @endforeach
-                        @else
-                      <p>No hay ingresos para este paciente.</p>
-                     @endif
-                     
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
 
 
            <div class="stats">
                     <i class="material-icons text-success">arrow_back</i>
-                    <a  href="{{route ('Admin')}}"> Regresar a lista de paciente</a>
+                    <a  href="{{route ('diagnosticos')}}"> Regresar al listado</a>
             </div>
         </div>
       </div>
@@ -511,10 +536,6 @@
 
 
 
-          </div>
-        </div>
-      </div>
-
-
+        
 
          @include('layouts/footer')

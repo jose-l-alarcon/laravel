@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Admin';
+    protected $redirectTo = '/diagnosticos';
       // UNA VEZ LOGUEADO INGRESA AL PANEL DE MEDICO
 
     /**

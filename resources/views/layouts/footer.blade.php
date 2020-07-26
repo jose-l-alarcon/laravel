@@ -13,8 +13,13 @@
 
   @include('sweetalert::alert')
 
-
   <!--   Core JS Files   -->
+
+
+
+
+  <!-- ventana modal -->
+   
 
   <script src="{{ asset ('js/core/jquery.min.js')}}"></script>
   <script src="{{ asset ('js/core/popper.min.js')}}"></script>
@@ -28,9 +33,8 @@
   <!-- Plugin for the momentJs  -->
  <script src="{{ asset ('js/plugins/moment.min.js')}}"></script>
 
-  <!--  Plugin for Sweet Alert -->
- <script src="{{ asset ('js/plugins/sweetalert2.js')}}"></script>
-  <!-- Forms Validations Plugin -->
+
+
 
   <script src="{{ asset ('js/plugins/jquery.validate.min.js')}}"></script>
 

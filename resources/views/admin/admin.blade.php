@@ -19,36 +19,6 @@
    </div>
 
 
-    @if(Session::has('ingreso'))
-       <div class="row">
-        <div class="col-md-8">
-        <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <center><b>{{Session::get('ingreso')}} </b></center></span>
-         </div>
-
-        </div>
-      </div>
-      @endif
-
-
-    @if(Session::has('actualizado'))
-       <div class="row">
-        <div class="col-md-8">
-        <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <i class="material-icons">close</i>
-                    </button>
-                    <span>
-                      <center><b>{{Session::get('actualizado')}} </b></center></span>
-         </div>
-
-        </div>
-      </div>
-      @endif
           
     <div class="row">
             <div class="col-md-8">
@@ -60,73 +30,74 @@
                 <div class="card-body">
                   <div class="table-responsive">
                      <table id="tabla" class="table">
-        
+            @if ($pacientes->count())
              <thead>
                 <tr>
   
-                  <th >Apellido</th>
+                  <th>Apellido</th>
                   <th>Nombre</th>
                   <th>Edad</th>
+                  <th>DNI</th>
                   <th>Obra social</th>
                   <th><center>Opciones</center></th>
 
                 </tr>
               </thead>
+
+               @foreach ($pacientes as $resultado)
+                   
+                      <tr>
+                        <td>{{ $resultado->apellido }}</td>
+                        <td>{{ $resultado->nombre }}</td>
+                        <td>{{ $resultado->edad }}</td>
+                        <td>{{ $resultado->dni }}</td>
+                        <td>{{ $resultado->obra_social }}</td>
+                         <td align="right"> 
+                            <a href="{{route('detalle',[$resultado->idpaciente])}}"  type="button" rel="tooltip" title="Más datos del paciente" class="btn btn-warning btn-sm">
+                              Ver datos
+                            <a href="{{route('editar',[$resultado->idpaciente])}}" type="button" rel="tooltip" title="Editar registro" class="btn btn-info btn-sm"> Editar
+                            </a>
+                          </td> 
+                      </tr> 
+                        @endforeach
+                           @else
+                            <p>No hay registros de pacientes.</p>
+                       @endif    
         
             </table>
 
 
-<script>
-  $(document).ready(function() {
-    $('#tabla').DataTable(
+              <script>
+                    $(document).ready(function() {
+                    $('#tabla').DataTable(
 
-          {
-         
-          "serverSide": true,
-           "ajax": "{{ url('api/pacientes') }}",
-           "columns": [
-       
-             {data : "apellido" }, 
-             {data : "nombre" },
-             {data : "edad" },
-             {data : "obra_social" },
-             {data : "btn"},
-
-            ],
-
-            // "columnDefs": 
-            // [{targets:4, render:function(data){
-            //   return moment(data).format('DD/MM/YYYY');
-            //   }}],
-
-            
-
-          "language": {
-              "decimal": "",
-              "emptyTable": "No hay registros de pacientes",
-              "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
-              "infoEmpty": "Mostrando 0 de 0 de 0 Entradas",
-              "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-              "infoPostFix": "",
-              "thousands": ",",
-              "lengthMenu": "Mostrar _MENU_ Registros",
-              "loadingRecords": "Cargando...",
-              "processing": "Procesando...",
-              "search": "Buscar:",
-              "zeroRecords": "Sin resultados encontrados",
-              "paginate": {
-                  "first": "Primero",
-                  "last": "Ultimo",
-                  "next": "Siguiente",
-                  "previous": "Anterior"
-              }
-                    }
+                    {
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay registros de pacientes",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                        "infoEmpty": "Mostrando 0 de 0 de 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Registros",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                              }
 
 
 
-          });
-  } );
-</script>
+                    });
+                    } );
+                    </script>
 
 
 
@@ -138,6 +109,12 @@
             </div>
 
           </div>
+
+
+  
+
+<!-- modal para ingresar pacientes -->
+
         </div>
 
       </div>

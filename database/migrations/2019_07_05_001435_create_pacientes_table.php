@@ -19,16 +19,15 @@ class CreatePacientesTable extends Migration
             $table->string('apellido', 100);
             $table->string('nombre', 100);
             $table->string('genero', 50);
-            // $table->unsignedInteger('idgenero');
-            // $table->foreign('idgenero')->references('idgenero')->on('genero');
-            
-            $table->date('fecha_nacimiento');
-            $table->string('edad', 15);
-            $table->string('obra_social', 100);
-            $table->string('localidad', 100);
-            $table->string('provincia', 100);
-            // $table->date('fecha_entrada');   
-            $table->timestamps();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->string('edad', 15)->nullable();
+            $table->string('obra_social', 100)->nullable();
+            $table->string('localidad', 100)->nullable();
+            $table->string('provincia', 100)->nullable();
+            $table->string('hcnum', 100)->nullable();
+            $table->integer('estado')->nullable();
+            $table->timestamps(); 
+        
         });
     }
 

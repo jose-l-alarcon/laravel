@@ -26,17 +26,14 @@ class MedicacionDataRequest extends FormRequest
         return [
 
           'medicacion' => 'required',
-          'dosis' => 'required',
-          'dia_inicio' =>'required'
+         
             //
         ];
     }
 
     public function messages(){
         return [
-            'medicacion.required' => 'Campo obligatorio',
-            'dosis.required' => 'Campo obligatorio',
-            'dia_inicio.required' => 'Campo obligatorio',
+            'medicacion.required' => 'Error campo medicación no puede ser vacio',
           
  
         ];

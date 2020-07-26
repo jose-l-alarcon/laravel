@@ -20,9 +20,20 @@
         @endif
       </div>
     </div>
+           
+          
+            
+           <div class="row">
+                 <div class="col-md-10 ml-auto mr-auto">
+               <a href="{{route('altaEvolucion',[$datospaciente->iddiagnostico])}}" class="btn btn-round btn-fill btn-default">Dar de alta al paciente</a>
+             <a  href="{{route('detalleDiagnostico', $datospaciente->iddiagnostico)}}" class="btn btn-round btn-fill btn-warning">
+                               Vista previa 
+            </a>
+           </div>
+           </div>
 
  
-          <div class="row">
+        <div class="row">
             <div class="col-md-10 ml-auto mr-auto">
               <div class="card">
                 <div class="card-header card-header-info">
@@ -48,17 +59,7 @@
                            @endif
                         </div>
                       </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">N°Historia Clínica</label>
-                          <input type="number" class="form-control" name="nrohistoria_clinica" value="{{old('nrohistoria_clinica', $datospaciente->nrohistoria_clinica)}}">
-                              @if ($errors->has('nrohistoria_clinica'))
-                     <!-- preguntar si la vsriable contiene algiun error -->
-                           <p style="color:#FF0000";>{{$errors->first('nrohistoria_clinica')  }}</p>
-                           <!-- $errors->first imprime el primer error encontrado -->
-                           @endif
-                        </div>
-                      </div>
+            
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">N° Habitación</label>
@@ -84,7 +85,7 @@
                     </div>
 
                      <div class="row">
-                     <div class="col-md-3">
+                     <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">Bipap</label>
                           <input type="text" class="form-control" name="bipap" value="{{old('bipap', $datospaciente->bipap)}}">
@@ -95,7 +96,8 @@
                            @endif
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      
+                      <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">Traqueostomia</label>
                           <input type="text" class="form-control" name="traqueostomia" value="{{old('traqueostomia', $datospaciente->traqueostomia)}}">
@@ -106,7 +108,7 @@
                            @endif
                         </div>
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">SNG</label>
                           <input type="text" class="form-control" name="SNG" value="{{old('SNG', $datospaciente->SNG)}}">
@@ -117,6 +119,7 @@
                            @endif
                         </div>
                       </div>
+                      
                        <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Sonda Vesical</label>
@@ -128,14 +131,28 @@
                            @endif
                         </div>
                       </div>
+                      
+                       <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Oxígeno</label>
+                          <input type="text" class="form-control" name="oxigeno" value="{{old('oxigeno', $datospaciente->oxigeno)}}">
+                              @if ($errors->has('oxigeno'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('oxigeno')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+                      
                     </div>
                       
                       <label>Signos Vitales:</label>
                      <div class="row">
-                     <div class="col-md-3">
+                         
+                     <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">Peso</label>
-                          <input type="number" class="form-control" name="signo_vital_peso" value="{{old('signo_vital_peso', $datospaciente->signo_vital_peso)}}">
+                          <input type="number" step="any" class="form-control" name="signo_vital_peso" value="{{old('signo_vital_peso', $datospaciente->signo_vital_peso)}}">
                               @if ($errors->has('signo_vital_peso'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('signo_vital_peso')  }}</p>
@@ -143,10 +160,24 @@
                            @endif
                         </div>
                       </div>
+                      
+                       <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">TA</label>
+                          <input type="text" class="form-control" name="signo_vital_ta" value="{{old('signo_vital_ta', $datospaciente->signo_vital_ta)}}">
+                          @if ($errors->has('signo_vital_ta'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('signo_vital_ta')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+                      
+                      
                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">FC</label>
-                          <input type="number" class="form-control" name="signo_vital_FC" value="{{old('signo_vital_FC', $datospaciente->signo_vital_FC)}}">
+                          <input type="number" step="any" class="form-control" name="signo_vital_FC" value="{{old('signo_vital_FC', $datospaciente->signo_vital_FC)}}">
                               @if ($errors->has('signo_vital_FC'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('signo_vital_FC')  }}</p>
@@ -157,7 +188,7 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">FR</label>
-                          <input type="number" class="form-control" name="signo_vital_FR" value="{{old('signo_vital_FR', $datospaciente->signo_vital_FR)}}">
+                          <input type="number" step="any" class="form-control" name="signo_vital_FR" value="{{old('signo_vital_FR', $datospaciente->signo_vital_FR)}}">
                               @if ($errors->has('signo_vital_FR'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('signo_vital_FR')  }}</p>
@@ -168,7 +199,7 @@
                        <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">Sat02</label>
-                          <input type="number" class="form-control" name="signo_vital_Sat" value="{{old('signo_vital_Sat', $datospaciente->signo_vital_Sat)}}">
+                          <input type="number" step="any" class="form-control" name="signo_vital_Sat" value="{{old('signo_vital_Sat', $datospaciente->signo_vital_Sat)}}">
                               @if ($errors->has('signo_vital_Sat'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('signo_vital_Sat')  }}</p>
@@ -176,10 +207,10 @@
                            @endif
                         </div>
                       </div>
-                       <div class="col-md-3">
+                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="bmd-label-floating">Temperatura</label>
-                          <input type="number" class="form-control" name="signo_vital_temperatura" value="{{old('signo_vital_temperatura', $datospaciente->signo_vital_temperatura)}}">
+                          <input type="number" step="any" class="form-control" name="signo_vital_temperatura" value="{{old('signo_vital_temperatura', $datospaciente->signo_vital_temperatura)}}">
                               @if ($errors->has('signo_vital_temperatura'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('signo_vital_temperatura')  }}</p>
@@ -188,6 +219,72 @@
                         </div>
                       </div>
                     </div>
+
+                    <label>Balance:</label>
+                     <div class="row">
+                     <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Ingreso</label>
+                          <input type="text"  class="form-control" name="balance_ingreso" value="{{old('balance_ingreso', $datospaciente->balance_ingreso)}}">
+                              @if ($errors->has('balance_ingreso'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_ingreso')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Egreso</label>
+                          <input type="text"  class="form-control" name="balance_egreso" value="{{old('balance_egreso', $datospaciente->balance_egreso)}}">
+                              @if ($errors->has('balance_egreso'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_egreso')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Balance</label>
+                          <input type="text"  class="form-control" name="balance_balance" value="{{old('balance_balance', $datospaciente->balance_balance)}}">
+                              @if ($errors->has('balance_balance'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_balance')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+                       <div class="col-md-2">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Flujo</label>
+                          <input type="text" class="form-control" name="balance_flujo" value="{{old('balance_flujo', $datospaciente->balance_flujo)}}">
+                              @if ($errors->has('balance_flujo'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('balance_flujo')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Motivo consulta</label>
+                            <textarea class="form-control" rows="6" name="motivoConsulta">{{old('motivoConsulta',$datospaciente->motivoConsulta)}}</textarea>
+                                @if ($errors->has('motivoConsulta'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('motivoConsulta')  }}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+               
                
                     <div class="row">
                       <div class="col-md-12">
@@ -208,7 +305,7 @@
                         <div class="form-group">
                           <div class="form-group">
                             <label class="bmd-label-floating">Examen fisico</label>
-                            <textarea class="form-control" rows="5" name="examen_fisico">{{old('examen_fisico',$datospaciente->examen_fisico)}}</textarea>
+                            <textarea class="form-control" rows="6" name="examen_fisico">{{old('examen_fisico',$datospaciente->examen_fisico)}}</textarea>
                                 @if ($errors->has('examen_fisico'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('examen_fisico')  }}</p>
@@ -224,7 +321,7 @@
                         <div class="form-group">
                           <div class="form-group">
                             <label class="bmd-label-floating">Examenes complementarios</label>
-                            <textarea class="form-control" rows="5" name="examen_complementario">{{old('examen_complementario',$datospaciente->examen_complementario)}}</textarea>
+                            <textarea class="form-control" rows="6" name="examen_complementario">{{old('examen_complementario',$datospaciente->examen_complementario)}}</textarea>
                                 @if ($errors->has('examen_complementario'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('examen_complementario')  }}</p>
@@ -240,7 +337,7 @@
                         <div class="form-group">
                           <div class="form-group">
                             <label class="bmd-label-floating">Cultivos</label>
-                            <textarea class="form-control" rows="2" name="cultivo">{{old('cultivo',$datospaciente->cultivo)}}</textarea>
+                            <textarea class="form-control" rows="3" name="cultivo">{{old('cultivo',$datospaciente->cultivo)}}</textarea>
                                 @if ($errors->has('cultivo'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('cultivo')  }}</p>
@@ -258,7 +355,7 @@
                         <div class="form-group">
                           <div class="form-group">
                             <label class="bmd-label-floating">Comentarios</label>
-                            <textarea class="form-control" rows="5" name="comentarios">{{old('comentarios',$datospaciente->comentarios)}}</textarea>
+                            <textarea class="form-control" rows="6" name="comentarios">{{old('comentarios',$datospaciente->comentarios)}}</textarea>
                                 @if ($errors->has('comentarios'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('comentarios')  }}</p>
@@ -270,21 +367,7 @@
                       </div>
                     </div>
 
-                     <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Aspecto social</label>
-                            <textarea class="form-control" rows="2" name="aspecto_social">{{old('aspecto_social',$datospaciente->aspecto_social)}}</textarea>
-                                @if ($errors->has('aspecto_social'))
-                     <!-- preguntar si la vsriable contiene algiun error -->
-                           <p style="color:#FF0000";>{{$errors->first('aspecto_social')  }}</p>
-                           <!-- $errors->first imprime el primer error encontrado -->
-                           @endif
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
 
 
                     <button type="submit" class="btn btn-primary pull-right">Actualizar datos</button>
@@ -365,10 +448,11 @@
                   
                     
                     @if($detallesMedicina->count())
-                      <th>ID</th>
+                       <th>ID</th>
                       <th>Medicación</th>
                       <th>Dosis</th>
-                      <th>Día de inicio</th>
+                      <th>Desde</th>
+                      <th>Hasta</th>
                       <th>Días</th>
                       <th></th>
                       <th></th>
@@ -380,7 +464,24 @@
                         <td>{{$loop->iteration}}</td>
                         <td width="50px">{{$detallesMedicina->medicacion}}</td>
                         <td>{{$detallesMedicina->dosis}}</td>
-                        <td>{{ date("d/m/Y", strtotime($detallesMedicina->dia_inicio)) }}</td>
+                       <td>
+
+                        @if(is_null($detallesMedicina->dia_inicio))
+                        <p></p>
+                        @else
+                        {{ date("d/m/Y", strtotime($detallesMedicina->dia_inicio)) }}
+                        @endif
+                       
+                       </td>
+                        <td>
+
+                        @if(is_null($detallesMedicina->fecha_fin))
+                        <p></p>
+                        @else
+                        {{ date("d/m/Y", strtotime($detallesMedicina->fecha_fin)) }}
+                        @endif
+                       
+                       </td>
                         <td>{{$detallesMedicina->dias}}</td>
 
                         <td class="td-actions text-right">
@@ -493,9 +594,9 @@
               {!!csrf_field()!!} 
                 
                   <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Medicación</label>
+                          <label>Medicación</label>
                            <input type="text" class="form-control" id="medicacion" name="medicacion" class="form-control" value="{{old('medicacion')}}"/>
                               @if ($errors->has('medicacion'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -505,9 +606,9 @@
                          
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Dosis</label>
+                          <label>Dosis</label>
                           <input type="text" class="form-control" id="dosis" name="dosis" class="form-control" value="{{old('dosis')}}" />
                             @if ($errors->has('dosis'))
                      <!-- preguntar si la vsriable contiene algiun error -->
@@ -518,15 +619,34 @@
                         </div>
                       </div>
 
-                       <div class="col-md-4">
+                       <div class="col-md-3">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Fecha Inicio</label>
+                          <label>Fecha Inicio</label>
                            <input type="date" class="form-control" id="dia_inicio" name="dia_inicio" class="form-control" value="{{old('dia_inicio')}}"/>
                              @if ($errors->has('dia_inicio'))
                      <!-- preguntar si la vsriable contiene algiun error -->
                            <p style="color:#FF0000";>{{$errors->first('dia_inicio')}}</p>
                            <!-- $errors->first imprime el primer error encontrado -->
                            @endif
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                          <label>Fin medicación</label>
+                           <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" class="form-control" value="{{old('fecha_fin')}}"/>
+                             @if ($errors->has('fecha_fin'))
+                     <!-- preguntar si la vsriable contiene algiun error -->
+                           <p style="color:#FF0000";>{{$errors->first('fecha_fin')}}</p>
+                           <!-- $errors->first imprime el primer error encontrado -->
+                           @endif
+                      </div>
+                    </div>
+
+                     <div class="col-md-1">
+                        <div class="form-group">
+                          <label>Dias</label>
+                           <input type="number" class="form-control"  name="dias" class="form-control" value="{{old('dias')}}"/>
                       </div>
                     </div>
                      
@@ -616,16 +736,7 @@
                 required: true
 
             },
-             dosis: {
-
-                required: true
-
-            },
-             dia_inicio: {
-
-                required: true
-
-            },
+            
         }
       });  
     }

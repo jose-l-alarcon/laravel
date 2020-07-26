@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-body"> 
                   <h6 class="card-category text-gray">Datos del paciente :</h6>
-                  <h4 class="card-title">{{$paciente->apellido}} {{$paciente->nombre}}</h4>
+                  <h4 class="card-title">{{$paciente->apellido}} {{$paciente->nombre}} - HC NUM: {{$paciente->hcnum}}</h4>
                   <p class="card-description">
                      
                      

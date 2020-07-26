@@ -12,7 +12,7 @@ class Medicacion extends Model
 
 
    protected $fillable = [
-       'iddiagnostico','dosis','dia_inicio','dias','estado'
+       'iddiagnostico','medicacion','dosis','dia_inicio','fecha_fin','dias','estado'
 
     ]; 
 

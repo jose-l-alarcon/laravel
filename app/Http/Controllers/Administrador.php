@@ -42,9 +42,14 @@ class Administrador extends Controller
      {
     
    public function admin(){
+          
+    $pacientes = DB::table('pacientes')
+      ->select('pacientes.*')
+      ->where('pacientes.estado', '=', 1)
+      ->orderBy('pacientes.apellido', 'asc')
+      ->get();
 
-
-          return view('admin/admin') ;
+          return view('admin/admin', compact('pacientes')) ;
    
       } 
 
@@ -95,6 +100,8 @@ public function detalle_paciente ($idpaciente){
                      $paciente->obra_social= $request->get('obra_social');
                      $paciente->localidad= $request->get('localidad');
                      $paciente->provincia=$request->get('provincia');
+                     $paciente->hcnum=$request->get('hcnum');
+                     $paciente->estado=1;
                      $paciente->save();
                        
                        DB::commit();
@@ -128,19 +135,17 @@ public function detalle_paciente ($idpaciente){
 
             $data = request()->validate([
                     
-                      'dni' => ['required',Rule::unique('pacientes')->ignore($paciente),'max:8'],
-                      // Ignorar el id al actualizar los datos ,En lugar de pasar el valor de la clave del modelo al ignoremétodo, puede pasar toda la instancia del modelo. Laravel extraerá automáticamente la clave del modelo: 
-                      // Rule::unique('users')->ignore($user)
-                          // nombre de la tabla y la instacia completa laravel automaticamente tomara el id
-
-                      'apellido' => 'required',
-                      'nombre' =>'required',
-                      'genero' => 'required',
-                      'fecha_nacimiento' => 'required',
-                      'edad' => 'required',
-                      'obra_social' =>['required','max:15'],
-                      'localidad' => 'required',
-                      'provincia' =>'required',
+                  'dni' => ['required','max:8'],
+                  'apellido' => 'required',
+                  'nombre' =>'required',
+                  'genero' => 'required',
+                  'fecha_nacimiento' => 'required',
+                  'edad' => 'required',
+                  'obra_social' =>['required','max:15'],
+                  'localidad' => 'required',
+                  'provincia' =>'required',
+                   'hcnum' =>'required',
+                      
                       // 'fecha_entrada' => 'required',
 
                     ]); 
@@ -158,14 +163,36 @@ public function detalle_paciente ($idpaciente){
 
      public function diagnostico(){
 
+          $pacientes = DB::table('pacientes')
+          ->select('pacientes.*')
+          ->where('pacientes.estado', '=', 1)
+          ->orderBy('pacientes.apellido', 'asc')
+          ->get();
+
          $diagnostico = DB::table('diagnostico')
             ->join('pacientes', 'diagnostico.idpaciente', '=', 'pacientes.idpaciente')
             ->select('diagnostico.*', 'pacientes.*')
+            ->where('diagnostico.dia_egreso', '=', NULL)
+            ->where('diagnostico.estado', '=', 1)
             ->orderBy('apellido', 'asc')
-            ->paginate(5);
+            ->get();
           
             // ordenar pacientes por apellido en forma descendente
-            return view('diagnosticos/diagnostico' , compact('diagnostico')) ;
+            return view('diagnosticos/diagnostico' , compact('diagnostico','pacientes')) ;
+ 
+      }
+
+      public function pacientesEgreso(){
+
+         $diagnostico = DB::table('diagnostico')
+            ->join('pacientes', 'diagnostico.idpaciente', '=', 'pacientes.idpaciente')
+            ->select('diagnostico.*', 'pacientes.*')
+            ->where('diagnostico.dia_egreso', '<>', NULL)
+            ->orderBy('apellido', 'asc')
+            ->get();
+          
+            // ordenar pacientes por apellido en forma descendente
+            return view('diagnosticos/pacientesEgreso' , compact('diagnostico')) ;
  
       }
 
@@ -205,6 +232,23 @@ public function detalle_paciente ($idpaciente){
                       
                       // calcular la diferencia de dias entre la fecha de ingreso y 
                       // la fecha de evolucion
+                     
+
+                     $verificacion = DB::table('diagnostico')
+                    ->join('pacientes', 'diagnostico.idpaciente', '=', 'pacientes.idpaciente')
+                    ->select('diagnostico.*', 'pacientes.*')
+                    ->where ('diagnostico.idpaciente', $paciente->idpaciente)
+                    ->where('diagnostico.estado', 1)
+                    ->count();
+                   
+                    
+                     if ($verificacion == 1) {
+
+                       return redirect()->route('diagnosticos')->with('warning','Error , este paciente ya esta en su lista de evolución diaria ');
+
+                     }
+                     else{
+
                       $dia_adicional = 1;
                       $date = Carbon::now();
                       $fecha_ingreso=Carbon::parse($request->get('fecha_entrada'));
@@ -218,7 +262,6 @@ public function detalle_paciente ($idpaciente){
                      $diagnostico->idpaciente=$paciente->idpaciente;
                      $diagnostico->nrohabitacion=$request->get('nrohabitacion');
                      $diagnostico->nrocama=$request->get('nrocama');
-                     $diagnostico->nrohistoria_clinica=$request->get('nrohistoria_clinica');
                      $diagnostico->fecha_entrada=$fecha_ingreso;
                      $diagnostico->fecha_evolucion= $date;
                      $diagnostico->dias_internacion= $dias_internacion;
@@ -227,16 +270,25 @@ public function detalle_paciente ($idpaciente){
                      $diagnostico->SNG=$request->get('SNG');
                      $diagnostico->sonda_vesical=$request->get('sonda_vesical');
                      $diagnostico->signo_vital_peso=$request->get('signo_vital_peso');
+                     $diagnostico->signo_vital_ta=$request->get('signo_vital_ta');
                      $diagnostico->signo_vital_FC=$request->get('signo_vital_FC');
                      $diagnostico->signo_vital_FR=$request->get('signo_vital_FR');
                      $diagnostico->signo_vital_Sat=$request->get('signo_vital_Sat');
                      $diagnostico->signo_vital_temperatura=$request->get('signo_vital_temperatura');
+                    $diagnostico->balance_ingreso=$request->get('balance_ingreso');
+                    $diagnostico->balance_egreso=$request->get('balance_egreso');
+                    $diagnostico->balance_balance=$request->get('balance_balance');
+                     $diagnostico->balance_flujo=$request->get('balance_flujo');
+
                      $diagnostico->aporte_oral=$request->get('aporte_oral');
                      $diagnostico->examen_fisico=$request->get('examen_fisico');
                     $diagnostico->examen_complementario=$request->get('examen_complementario');
                      $diagnostico->cultivo=$request->get('cultivo');
                     $diagnostico->comentarios=$request->get('comentarios');
-                    $diagnostico->aspecto_social=$request->get('aspecto_social');
+                     $diagnostico->motivoConsulta=$request->get('motivoConsulta');
+                     $diagnostico->estado=1;
+  
+      
                      $diagnostico->save();
                      
                      // guardar los datos en la tabla Detallediagnostico
@@ -274,6 +326,7 @@ public function detalle_paciente ($idpaciente){
                       $detalle_dosis = $request->get('detallesDosis');
 
                       $detalle_fecha = $request->get('detallesFecha');
+
                     
                       
                       if(empty($detalle_medicacion)){
@@ -282,7 +335,7 @@ public function detalle_paciente ($idpaciente){
                       $medicacion->iddiagnostico = $diagnostico->iddiagnostico;
                       $medicacion->medicacion =$detalle_medicacion;
                       $medicacion->dosis = $detalle_dosis;
-                      $medicacion->dia_inicio = $detalle_fecha;    
+                      $medicacion->dia_inicio = $detalle_fecha; 
                        $medicacion->estado = 0;                
                       $medicacion->save();
                       }
@@ -296,7 +349,6 @@ public function detalle_paciente ($idpaciente){
                       $medicacion->medicacion =$detalle_medicacion[$cont];
                       $medicacion->dosis = $detalle_dosis[$cont];
                       $medicacion->dia_inicio = $detalle_fecha[$cont];
-                      // $medicacion->dias = $dias[$cont];
                       $medicacion->estado = 1;  
                       $medicacion->save();
                       $cont= $cont+1;
@@ -308,12 +360,20 @@ public function detalle_paciente ($idpaciente){
                        DB::commit();
                        return redirect()->route('diagnosticos')->with('success','El registro se agrego correctamente');
                       } 
+
+
                       catch (\Exception $e) {
                     DB::rollback();
-                       } 
+                       }
+
+                      }
+                 
+
+                     
                   
 
                   }
+
 
 
            public function detalleDiagnostico ($iddiagnostico){
@@ -377,7 +437,6 @@ public function detalle_paciente ($idpaciente){
        
 
           }
-
           
         
         public function actualizarDiagnostico ($iddiagnostico){
@@ -403,7 +462,7 @@ public function detalle_paciente ($idpaciente){
 
              $detallesMedicina = DB::table('diagnostico')
             ->join('medicacion', 'diagnostico.iddiagnostico', '=', 'medicacion.iddiagnostico')
-            ->select('medicacion.idmedicacion','medicacion.dosis','medicacion.medicacion','medicacion.dia_inicio','medicacion.dias')
+            ->select('medicacion.idmedicacion','medicacion.dosis','medicacion.medicacion','medicacion.dia_inicio','medicacion.fecha_fin','medicacion.dias')
             ->where("medicacion.iddiagnostico","=",$iddiagnostico)
             ->where("medicacion.estado", "=", 1)
             ->get();
@@ -447,23 +506,29 @@ public function detalle_paciente ($idpaciente){
                      try {
                      $diagnostico->nrohabitacion=$request->get('nrohabitacion');
                      $diagnostico->nrocama=$request->get('nrocama');
-                     $diagnostico->nrohistoria_clinica=$request->get('nrohistoria_clinica');
                      $diagnostico->fecha_entrada=$request->get('fecha_entrada');
                      $diagnostico->bipap=$request->get('bipap');
                      $diagnostico->traqueostomia=$request->get('traqueostomia');
                      $diagnostico->SNG=$request->get('SNG');
                      $diagnostico->sonda_vesical=$request->get('sonda_vesical');
+                     $diagnostico->signo_vital_ta=$request->get('signo_vital_ta');
                      $diagnostico->signo_vital_peso=$request->get('signo_vital_peso');
                      $diagnostico->signo_vital_FC=$request->get('signo_vital_FC');
                      $diagnostico->signo_vital_FR=$request->get('signo_vital_FR');
                      $diagnostico->signo_vital_Sat=$request->get('signo_vital_Sat');
                      $diagnostico->signo_vital_temperatura=$request->get('signo_vital_temperatura');
+
+                      $diagnostico->balance_ingreso=$request->get('balance_ingreso');
+                    $diagnostico->balance_egreso=$request->get('balance_egreso');
+                    $diagnostico->balance_balance=$request->get('balance_balance');
+                     $diagnostico->balance_flujo=$request->get('balance_flujo');
+
                      $diagnostico->aporte_oral=$request->get('aporte_oral');
                      $diagnostico->examen_fisico=$request->get('examen_fisico');
                     $diagnostico->examen_complementario=$request->get('examen_complementario');
                      $diagnostico->cultivo=$request->get('cultivo');
                     $diagnostico->comentarios=$request->get('comentarios');
-                     $diagnostico->aspecto_social=$request->get('aspecto_social');
+                     $diagnostico->motivoConsulta=$request->get('motivoConsulta');
                      $diagnostico->update();
 
                       DB::commit();
@@ -505,12 +570,11 @@ public function detalle_paciente ($idpaciente){
          public function eliminarDiagnostico (Detallediagnostico $detalle_diagnostico){
 
          
-        
              $Detallediagnostico = Detallediagnostico::find($detalle_diagnostico->iddetalle_diagnostico);
 
 
               $Detallediagnostico->delete();
-               return back()->with('info','El registro se elimino correctamente');         
+               return back()->with('info','El registro se elimino correctamente');  
 
           }
 
@@ -549,6 +613,7 @@ public function detalle_paciente ($idpaciente){
                $detallemedicacion->medicacion=$request->get('medicacion');
                $detallemedicacion->dosis=$request->get('dosis');
                $detallemedicacion->dia_inicio=$request->get('dia_inicio');
+               $detallemedicacion->fecha_fin=$request->get('fecha_fin');
                $detallemedicacion->dias=$request->get('dias');
 
                $detallemedicacion->update();
@@ -638,11 +703,10 @@ public function detalle_paciente ($idpaciente){
             ->where("medicacion.estado", "=", 1)
             ->get();
           
+ 
+           
 
-
-           return \PDF::loadView('diagnosticos.pdf',compact('datospaciente', 'detalles', 'detallesMedicina'))
-                
-                  ->download('evolucion.pdf');
+           return \PDF::loadView('diagnosticos.pdf',compact('datospaciente', 'detalles', 'detallesMedicina'))->download('evolucion.pdf');
  
           } 
 
@@ -672,6 +736,110 @@ public function detalle_paciente ($idpaciente){
 
                   }
 
+// --------- controladores para diagnostico con ajax ---------------------
+
+           public function create(){
+
+             return view('diagnosticos.create'); 
+
+            }
+
+            
+            public function store(DetalleDataRequest $request){
+               
+          
+             if($request->ajax()){
+
+               $diagnostico= new Detallediagnostico;
+               $diagnostico->iddiagnostico= $request->get('product_id');
+               $diagnostico->detalle_diagnostico=$request->get('detalle_diagnostico');
+               $diagnostico->estado = 1; 
+               $diagnostico->save(); 
+
+               // enviar respuesta con el mensaje de exito success y ademas la variable diagnostico para actualizar los datos de la tabla
+
+               return response()->json(['success'=>'El diagnóstico se agrego con éxito', 'diagnostico' => $diagnostico]);
+             }
+                         
+
+            }
+
+
+           public function storeMedicacion(MedicacionDataRequest $request){
+               
+          
+             if($request->ajax()){
+
+
+               $medicacion= new Medicacion;
+               $medicacion->iddiagnostico=$request->get('medicacion_id');
+               $medicacion->medicacion=$request->get('medicacion');
+               $medicacion->dosis=$request->get('dosis');
+               $medicacion->dia_inicio=$request->get('dia_inicio');
+               $medicacion->fecha_fin=$request->get('fecha_fin');
+               $medicacion->dias=$request->get('dias');
+               $medicacion->estado = 1; 
+               $medicacion->save();
+
+               return response()->json(['success'=>'La medicación se agrego con éxito']);
+             }
+                         
+
+            }
+
+
+             
+           public function listarDiagnosticos(Request $request){
+              
+              $diagnosticoLista= $request->get('diagnostico');
+
+             $diagnosticos = DB::table('diagnostico')
+            ->join('detalle_diagnostico', 'diagnostico.iddiagnostico', '=', 'detalle_diagnostico.iddiagnostico')
+            ->select('diagnostico.*','detalle_diagnostico.*')
+            ->where("detalle_diagnostico.iddiagnostico","=", $diagnosticoLista)
+            ->where("detalle_diagnostico.estado", "=", 1)
+            ->get();
+            
+              // consulta para traer los detalles de diagnostico 
+
+              return response()->json($diagnosticos);
+
+            }
+
+            // abrir ventana modal con el diagnostico a actualizar      
+            public function edit ($iddetalle_diagnostico){
+            
+              $detallediagnostico = Detallediagnostico::find($iddetalle_diagnostico);
+
+               return response()->json($detallediagnostico);
+              
+            }
+
+
+          // actualizar detalle de diagnostico de la ventana modal
+         public function updateDetalle(Request $request){
+               
+           
+            $id = $request->get('iddetalle_diagnostico');
+           
+            $detallediagnostico = Detallediagnostico::find($id);
+       
+
+             if($request->ajax()){
+         
+               $detallediagnostico->detalle_diagnostico=$request->get('detalle');
+               $detallediagnostico->update();
+
+               // enviar respuesta con el mensaje de exito success y ademas la variable diagnostico para actualizar los datos de la tabla
+
+               return response()->json(['success'=>'El diagnóstico actualizo con éxito']);
+             }
+                         
+
+            }
+
+// ----------------------FUNCIONES CRUD AJAX-------------------------------------
+
                  public function agregarNuevaMedicacion (MedicacionDataRequest $request,Diagnostico $diagnostico){
                    
  
@@ -683,6 +851,8 @@ public function detalle_paciente ($idpaciente){
                      $medicacion->medicacion=$request->get('medicacion');
                      $medicacion->dosis=$request->get('dosis');
                      $medicacion->dia_inicio=$request->get('dia_inicio');
+                     $medicacion->fecha_fin=$request->get('fecha_fin');
+                     $medicacion->dias=$request->get('dias');
                      $medicacion->estado = 1; 
                      $medicacion->save();
                       
@@ -696,6 +866,54 @@ public function detalle_paciente ($idpaciente){
                   
 
                   }
+
+
+          public function altaEvolucion ($iddiagnostico){
+
+            // Campos de la tabla de diagnostico con los datos del paciente
+            $datospaciente = DB::table('diagnostico')
+            ->join('pacientes', 'diagnostico.idpaciente', '=', 'pacientes.idpaciente')
+            ->select('diagnostico.*', 'pacientes.*')
+            ->where("iddiagnostico","=",$iddiagnostico)
+            ->first();
+
+
+          
+         return view('diagnosticos/altaEvolucion',['datospaciente'=>$datospaciente]);
+
+          }
+
+
+          
+           public function egreso (Diagnostico $diagnostico){
+                  
+                 
+         
+                 $date = Carbon::now();
+
+                  DB::beginTransaction();
+                     try {
+
+                     // cambiar estado del diagnostico a inactivo
+
+                    $datospaciente = DB::table('diagnostico')
+                    ->join('pacientes', 'diagnostico.idpaciente', '=', 'pacientes.idpaciente')
+                    ->select('diagnostico.*', 'pacientes.*')
+                    ->where("iddiagnostico","=",$diagnostico->iddiagnostico)
+                    ->update(['diagnostico.dia_egreso' => $date , 'diagnostico.estado' => 0 , 'pacientes.estado' => 0]);
+ 
+ 
+                      DB::commit();
+                  return redirect()->route('diagnosticos')->with('success','El paciente fue dado de alta con exito');
+
+
+                      } 
+                      catch (\Exception $e) {
+                    DB::rollback();
+                       } 
+
+
+          }         
 
 
 

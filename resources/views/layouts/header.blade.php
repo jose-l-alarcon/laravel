@@ -17,11 +17,12 @@
   <link  href="{{ asset('css/material-dashboard-rtl.css')}}" rel="stylesheet" />
 
 
-    <link href="{{ asset('css/material-dashboard.min.css')}}" rel="stylesheet" />
+  <link href="{{ asset('css/material-dashboard.min.css')}}" rel="stylesheet" />
   <link href="{{ asset('css/material-dashboard.min.css')}}" rel="stylesheet" />
 
+   
+   <script src="{{ asset ('js/jquery-3.5.0.js')}}"></script>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.js"/></script>
 
  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
@@ -29,9 +30,15 @@
 
 
  <script src="{{ asset ('js/diagnosticos.js')}}"></script>
- <script src="{{ asset ('js/script.js')}}"></script>
 
- <script src="{{ asset ('js/jquery-3.4.1.slim.min.js')}}"></script>
+
+
+
+
+
+
+
+
 
   <!-- Estilo para quitar bordes de los texarea de los dignosticos generados (vista agregar diagnostico)-->
  <style>

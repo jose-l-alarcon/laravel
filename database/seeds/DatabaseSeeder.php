@@ -12,32 +12,32 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-    	 $this->truncateTables(['rol_usuario', 'administrador', 'medico']);
+    	 // $this->truncateTables(['rol_usuario', 'administrador', 'medico']);
               // cargar las tablas para vaciar , luego utilizarla en el metodo 
 
 
          //cargar el seeder 
      
-          $this->call(rol_usuariosSeeder::class);  
-          $this->call(administradorSeeder::class);
-          $this->call(medicoSeeder::class);
+          $this->call(pacientesSeeder::class);  
+          // $this->call(administradorSeeder::class);
+          // $this->call(medicoSeeder::class);
 
       
 
     }
 
      // metodo para vaciar las tablas 
-    protected function truncateTables (array $tables){
+    // protected function truncateTables (array $tables){
    
-     DB::statement('SET FOREIGN_KEY_CHECKS = 0;'); 
+    //  DB::statement('SET FOREIGN_KEY_CHECKS = 0;'); 
 
 
-     foreach ($tables as $table) {
-     	DB::table($table)->truncate();
-     }
+    //  foreach ($tables as $table) {
+    //  	DB::table($table)->truncate();
+    //  }
   
 
-     DB::statement('SET FOREIGN_KEY_CHECKS = 1;'); 
+    //  DB::statement('SET FOREIGN_KEY_CHECKS = 1;'); 
 
-    }
+    // }
 }

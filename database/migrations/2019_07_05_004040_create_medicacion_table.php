@@ -19,7 +19,8 @@ class CreateMedicacionTable extends Migration
             $table->foreign('iddiagnostico')->references('iddiagnostico')->on('diagnostico');
             $table->string('medicacion', 250)->nullable();
             $table->string('dosis', 250)->nullable();
-            $table->date('dia_inicio')->nullable();  
+            $table->date('dia_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();   
             $table->integer('dias')->nullable();
             $table->integer('estado');
             // $table->timestamps(); 

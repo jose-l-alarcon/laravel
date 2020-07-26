@@ -164,6 +164,8 @@ return [
          Yajra\DataTables\DataTablesServiceProvider::class,
    
          UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+
+         Collective\Html\HtmlServiceProvider::class,
  
 
         /*
@@ -235,6 +237,9 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
 
 

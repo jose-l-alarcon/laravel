@@ -12,7 +12,7 @@ class Pacientes extends Model
 
 
    protected $fillable = [
-        'dni','apellido','nombre', 'genero' , 'fecha_nacimiento' , 'edad' , 'obra_social', 'localidad', 'provincia', 'fecha_entrada'
+        'dni','apellido','nombre', 'genero' , 'fecha_nacimiento' , 'edad' , 'obra_social', 'localidad', 'provincia','hcnum','estado'
     ]; 
 
    

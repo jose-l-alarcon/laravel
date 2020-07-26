@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,8 +23,17 @@ Route::get('pacientes',function(){
 
 // return App\Pacientes::all();
 	// formatear los datos para traerlo a la tabla
-	return datatables()
-	->eloquent(App\Models\Pacientes::query())
+
+   $model = App\Models\Pacientes::query();
+
+	return DataTables::eloquent($model)
+	 ->filter(function ($query) {
+
+                    if (request()->has('estado')) {
+                        $query->where('estado', '=' , '0');
+                    }
+                })
+	
 	->addColumn('btn', 'admin/action')
 	->rawColumns(['btn'])
 	->toJson();

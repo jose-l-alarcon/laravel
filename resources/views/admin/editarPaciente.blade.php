@@ -39,7 +39,7 @@
                     <!-- token agregado para evitar ataques post de otros sitios , ejemplo que por el formulario se quiera ingresar un nuevo usuario -->
         
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">DNI:</label>
                           <input type="number" name="dni" class="form-control" value="{{old('dni', $paciente->dni)}}"/>
@@ -47,14 +47,23 @@
                         </div>
                       </div>
 
+                   
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">HC Núm:</label>
+                          <input type="text" name="hcnum" class="form-control" value="{{old('hcnum', $paciente->hcnum)}}"/>
+                          <!-- old('dni', $paciente->dni) con el segundo parametro se cargara el dato actual del paciente -->
+                        </div>
+                      </div>
 
-                      <div class="col-md-4">
+
+                      <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Apellido:</label>
                           <input  type="text" name="apellido" class="form-control"  value="{{old('apellido', $paciente->apellido)}}" />
                         </div>
                       </div>
-                       <div class="col-md-4">
+                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Nombre:</label>
                           <input type="text" name="nombre" class="form-control"  value="{{old('nombre', $paciente->nombre)}}" />
@@ -120,34 +129,36 @@
                         </div>
                       </div>
                     </div>
-                     <!--  <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Fecha de ingreso:</label>
-                          <input type="date" name="fecha_entrada" class="form-control" value="{{old('fecha_entrada', $paciente->fecha_entrada)}}" />
-                        </div>
-                      </div>
-                    </div> -->
+
+              
                 
                     <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                     <div class="clearfix"></div>
+                
                   </form>
                 </div>
+
               </div>
-            </div>
+             
         
 
 
         </div>
+
+      </div>
+ 
+
       
 
          <div class="stats">
                     <i class="material-icons text-success">arrow_back</i>
                     <a  href="{{route ('Admin')}}"> Regresar al listado</a>
          </div>
+
      
 
       </div>
+    </div>
 
       @include('layouts/footer')
 

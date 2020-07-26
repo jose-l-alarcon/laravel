@@ -25,7 +25,7 @@ class PacienteDataRequest extends FormRequest
     {
         return [
 
-          'dni' => ['required','unique:pacientes,dni','max:8'],
+          'dni' => ['required','max:8'],
           'apellido' => 'required',
           'nombre' =>'required',
           'genero' => 'required',
@@ -33,7 +33,9 @@ class PacienteDataRequest extends FormRequest
            'edad' => 'required',
           'obra_social' =>['required','max:15'],
           'localidad' => 'required',
-          'provincia' =>'required',
+          'provincia' => 'required',
+          'hcnum' =>'required',
+
             //
         ];
     }
@@ -42,7 +44,6 @@ class PacienteDataRequest extends FormRequest
 
         return [
             'dni.required' => 'Campo obligatorio',
-            'dni.unique' => 'El dni que intenta ingresar ya existe en la base de datos',
             'dni.max' => 'El campo dni tiene un máximo de 8',
             'apellido.required' => 'Campo obligatorio',
             'nombre.required' => 'Campo obligatorio',
@@ -51,8 +52,9 @@ class PacienteDataRequest extends FormRequest
             'fecha_nacimiento.required' => 'Campo obligatorio',
             'edad.required' => 'Campo obligatorio',
             'localidad.required' => 'Campo obligatorio',
-            'provincia.required' => 'Campo obligatorio',
-
+             'provincia.required' => 'Campo obligatorio',
+            'hcnum.required' => 'Campo obligatorio',
+            
            
  
         ];

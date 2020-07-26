@@ -27,8 +27,8 @@ Route::get('/Saludo/{nombre}/{apellido}', function ($nombre, $apellido) {
 // RUTAS DEL SISTEMA DE HISTORIAS CLINICAS  
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/Admin', 'Administrador@admin')->name('Admin')    // Rutas para ver detalle del paciente 
-;
+    Route::get('/Admin', 'Administrador@admin')->name('Admin');    // Rutas para ver detalle del paciente 
+
     // Rutas para agregar nuevo paciente
     Route::get('/nuevoUsuario', 'Administrador@nuevoUsuario')->name('nuevoUsuario');
     Route::post('/agregarUsuario', 'Administrador@insertarUsuario');
@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function() {
      Route::put('updateDetallediagnostico/{detalle_diagnostico}', 'Administrador@updateDetallediagnostico')
      ->name('updateDetallediagnostico');
 
-     Route::delete('eliminarDiagnostico/{detalle_diagnostico}', 'Administrador@eliminarDiagnostico')
+  Route::delete('eliminarDiagnostico/{detalle_diagnostico}', 'Administrador@eliminarDiagnostico')
      ->name('eliminarDiagnostico');
 
       Route::get('/modificarMedicacion/{medicacion}','Administrador@modificarMedicacion')
@@ -89,12 +89,56 @@ Route::group(['middleware' => 'auth'], function() {
 
      Route::post('/agregarNuevaMedicacion/{diagnostico}', 'Administrador@agregarNuevaMedicacion');
 
+     Route::get('/altaEvolucion/{diagnostico}','Administrador@altaEvolucion')
+     ->name('altaEvolucion');
+
+     Route::put('egreso/{diagnostico}', 'Administrador@egreso');
+
+      Route::get('/pacientesEgreso', 'Administrador@pacientesEgreso')
+    ->name('pacientesEgreso');
+
+     Route::get('/create', 'Administrador@create')
+    ->name('create');
+
+
+
+    // RUTAS IMPLEMENTADAS PARA AJAX , CREAR Y ACTUALIZAR 
+     Route::post('/store', 'Administrador@store')->name('store');
+
+     Route::post('/storeMedicacion', 'Administrador@storeMedicacion')->name('storeMedicacion');
+
+      // listar diagnosticos con ajax
+      Route::get('/listarDiagnosticos', 'Administrador@listarDiagnosticos')
+      ->name('listarDiagnosticos');
+
+    //mostrar detalle en la vnetana modal para luego actualozar
+      Route::get('/edit/{iddetalle_diagnostico}','Administrador@edit')
+      ->name('edit');
+
+      //actualizar detalle de diagnostico con ajax 
+      Route::put('updateDetalle', 'Administrador@updateDetalle')
+      ->name('updateDetalle');
+
+
+
+     // permite que al cerrar sesion y volvamos para atras no muestre informacion privada
+      header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+      header('Cache-Control: no-store, no-cache, must-revalidate');
+      header('Cache-Control: post-check=0, pre-check=0',false);
+      header('Pragma: no-cache');
+   // permite que al cerrar sesion y volvamos para atras no muestre informacion privada
+
+
+   //RUTAS PARA PACIENTES UTILIZANDO VUE JS , AXIOS
+     Route::get('/listar', 'PacientesController@listar')->name('listar');    // Rutas para ver detalle del paciente 
+
+     Route::resource('pacientesvue', 'PacientesController' , ['except' => 'show' , 'create', 'edit']);
+     // parametros nombre de la ruta con el nombre del controlador, el tercer parametro indica que de todas las rutas creadas excluya el show , create y edit tambien porque se utiliza ventanas modal para crear o actualizar un nuevo paciente
  });
 
-
+Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });
 
 
 // RUTAS PARA EL LOGIN DE USUARIO
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');

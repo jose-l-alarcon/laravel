@@ -1,29 +1,27 @@
-  
-$(document).ready(function () {
+$(document).ready(function(){ 
+ $.ajaxSetup({
+     headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+     }
+ }); 
+
+ // a.delete-record: boton eliminar 
+ // $('#formModal').modal('show');
    
-$('#btn_guardarPaciente').click(function(){
+$('#registrar').click(function(){
               
-            var dni = $("#dni").val();
-		    var route = "{{route('agregarUsuario')}}";
-		    var dataString = "dni="+dni;
+            var dato = $("#detalle_diagnostico").val();
+		    var route = "http://127.0.0.1:8000/store";
 
 		   
 
 		   $.ajax({
-		    url:route,
-		    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		    type:'post',
+		    url: route,
+		    type:'POST',
 		    datatype:'json',
-		    data: dataString ,
-            success:function(data)
-            {
+		    data: {detalle_diagnostico:dato}
+        
 
-            },
-            error:function(data)
-            {
-             console.log(data);
-            }
-
-		   })
+		   });
 });
 });

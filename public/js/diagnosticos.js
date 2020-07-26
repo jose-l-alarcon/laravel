@@ -72,7 +72,7 @@
           detallesDosis = $("#dosis").val();
           detallesFecha = $("#dia_inicio").val();
 
-          if (detallesMedicacion!="" && detallesDosis!="" && detallesFecha!="") 
+          if (detallesMedicacion!="") 
           { 
 
             var fila2='<tr class="selected" id="filas2'+cont2+'"><td><button type="button" class="btn btn-warning" onclick="eliminar2('+cont2+');">X</button></td><td><td><textarea name="detallesMedicacion[]" class="sinborde" readonly>'+detallesMedicacion+'</textarea></td><td><textarea name="detallesDosis[]" class="sinborde" readonly>'+detallesDosis+'</textarea></td><td><input type="text" class="sinborde" cols="5" name="detallesFecha[]" value="'+detallesFecha+'"></td></tr>';
@@ -82,7 +82,7 @@
           }
           else{
 
-            alert("Error al ingresar la medicación , complete los campos");
+            alert("Error al ingresar la medicación , la medicación no puede ser un campo vacío");
           }
 
         }
@@ -120,14 +120,6 @@
 
             },
 
-            nrohistoria_clinica: {
-
-                required: true,
-
-              
-
-            },
-
             nrohabitacion: {
 
                 required: true,
@@ -135,90 +127,6 @@
                 
 
             },
-
-            nrocama: {
-
-                required: true,
-       
-
-            },
-            bipap: {
-
-                required: true
-
-            },
-            traqueostomia: {
-
-                required: true
-
-            },
-            SNG: {
-
-                required: true
-
-            },
-            sonda_vesical: {
-
-                required: true
-
-            },
-            signo_vital_peso: {
-
-                required: true
-
-            },
-            signo_vital_FC: {
-
-                required: true
-
-            },
-            signo_vital_FR: {
-
-                required: true
-
-            },
-             signo_vital_Sat: {
-
-                required: true
-
-            },
-             signo_vital_temperatura: {
-
-                required: true
-
-            },
-             aporte_oral: {
-
-                required: true
-
-            },
-             examen_fisico: {
-
-                required: true
-
-            },
-            examen_complementario: {
-
-                required: true
-
-            },
-             cultivo: {
-
-                required: true
-
-           },
-           comentarios: {
-
-                required: true
-
-           },
-
-           aspecto_social: {
-
-                required: true
-
-           },
-           
         }
     });  
     }
